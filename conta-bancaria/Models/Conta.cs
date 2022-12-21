@@ -40,9 +40,9 @@ namespace conta_bancaria.Models
             Console.WriteLine("Extrato: \n");
             foreach(var item in Movimentacoes)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item + "R$");
             }
-            Console.WriteLine($"Saldo total: {Saldo}");
+            Console.WriteLine($"Saldo total: {Saldo}R$");
         }
 
         public virtual double CalcularValorTarifaManutencao()
