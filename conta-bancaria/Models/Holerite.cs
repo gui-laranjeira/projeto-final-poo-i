@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace conta_bancaria
+namespace conta_bancaria.Models
 {
-    internal class Conta
+    internal class Holerite
     {
     }
 }
