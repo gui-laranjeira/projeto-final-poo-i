@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
 {
-    internal class ContaSalario : Conta
+    internal class ContaSalario 
     {
     }
 }

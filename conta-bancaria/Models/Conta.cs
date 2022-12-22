@@ -4,52 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace conta_bancaria.Models
+namespace conta_bancaria.Models;
+
+internal abstract class Conta
 {
-    internal abstract class Conta
+    public Conta(int numeroConta, Cliente cliente)
     {
-        public Conta(int numeroConta, Cliente cliente)
-        {
-            NumeroConta = numeroConta;
-            Cliente = cliente;
-            Saldo = 0;
-        }
+        NumeroConta = numeroConta;
+        Cliente = cliente;
+        Saldo = 0;
+    }
 
-        public int NumeroConta { get; set; }
-        public double Saldo { get; set; }
-        public Cliente Cliente { get; set; }
-        public List<double> Movimentacoes { get; set; }
+    public int NumeroConta { get; set; }
+    protected double Saldo { get; set; }
+    public Cliente Cliente { get; set; }
 
-        public double Depositar(double valor)
-        {
-            Movimentacoes.Add(valor);
-            Saldo += valor;
-            return Saldo;
-        }
+    List<double> Movimentacoes = new ();
 
-        public double Sacar(double valor)
-        {
-            valor *= (-1);
-            Movimentacoes.Add(valor);
-            Saldo += valor;
-            return Saldo;
-        }
+    public void Depositar(double valor)
+    {
+        Movimentacoes.Add(valor);
+        Saldo += valor;
+        Console.WriteLine($"Dinheiro em conta: {Saldo}"); 
+    }
 
-        public void Extrato()
-        {
-            Console.WriteLine("Extrato: \n");
-            foreach(var item in Movimentacoes)
-            {
-                Console.WriteLine(item + "R$");
-            }
-            Console.WriteLine($"Saldo total: {Saldo}R$");
-        }
+    public void Sacar(double valor)
+    {
+        valor *= (-1);
+        Movimentacoes.Add(valor);
+        Saldo += valor;
+        Console.WriteLine($"Dinheiro em conta: {Saldo}"); 
+    }
 
-        public virtual double CalcularValorTarifaManutencao()
+    public void Extrato()
+    {
+        Console.WriteLine("Extrato: \n");
+        foreach(var item in Movimentacoes)
         {
-            double taxa = 1;
-            double tarifa = taxa * (Saldo / 100);
-            return tarifa;
+            Console.WriteLine(item + "R$");
         }
+        Console.WriteLine($"\nSaldo total: {Saldo}R$");
+    }
+
+    public virtual double CalcularValorTarifaManutencao()
+    {
+        double taxa = 1;
+        double tarifa = taxa * (Saldo / 100);
+        return tarifa;
     }
 }
