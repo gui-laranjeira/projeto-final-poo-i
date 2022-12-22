@@ -21,7 +21,12 @@ internal abstract class Conta
 
     List<double> Movimentacoes = new ();
 
-    public void Depositar(double valor)
+    double taxaDeSaque = 0;
+
+
+    //esse método tem q ser protected pra não ser possivel instanciar uma contaSalario sem inserir o CNPJ,
+    //ai é só criar um novo construtor na classe filha, mas público, e chamar o base.Depositar();
+    protected virtual void Depositar(double valor)
     {
         Movimentacoes.Add(valor);
         Saldo += valor;
@@ -32,8 +37,18 @@ internal abstract class Conta
     {
         valor *= (-1);
         Movimentacoes.Add(valor);
-        Saldo += valor;
-        Console.WriteLine($"Dinheiro em conta: {Saldo}"); 
+        if (Saldo >= valor)
+        {
+            double taxa = CalcularValorTarifaManutencao();
+            Saldo += valor;
+            Saldo -= taxa;
+            Console.WriteLine($"Dinheiro em conta: {Saldo}");
+        }
+        else
+        {
+            Console.WriteLine("Não há saldo suficiente em conta!");
+        }
+        
     }
 
     public void Extrato()
@@ -47,9 +62,8 @@ internal abstract class Conta
     }
 
     public virtual double CalcularValorTarifaManutencao()
-    {
-        double taxa = 1;
-        double tarifa = taxa * (Saldo / 100);
+    {        
+        double tarifa = taxaDeSaque * (Saldo / 100);
         return tarifa;
     }
 }
