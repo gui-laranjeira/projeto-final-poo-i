@@ -6,35 +6,59 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
 {
-    internal class Holerite
+    public class Holerite
     {
-        public Holerite(string nomeEmpresa, int cnpjEmpresa, string endereçoEmpresa, string cargoEmpresa)
+        public Holerite()
         {
-            Console.WriteLine("Nos informe o Holerite para criação da sua conta salário! ");
+            Console.WriteLine("Nos informe os dados do seu Holerite para criação da sua conta salário! ");
             Console.WriteLine("Digite o CNPJ da Empresa: ");
-            cnpjEmpresa = int.Parse(Console.ReadLine());
+            string cnpjEmpresa = Console.ReadLine();
             Console.WriteLine("Digite a Razão Social: ");
-            nomeEmpresa = Console.ReadLine();
+            string nomeEmpresa = Console.ReadLine();
             Console.WriteLine("Digite o Endereço da Empresa: ");
-            endereçoEmpresa = Console.ReadLine();
+            string endereçoEmpresa = Console.ReadLine();
             Console.WriteLine("Digite o seu Cargo/Função na empresa: ");
-            cargoEmpresa = Console.ReadLine();
-        }
+            string cargoFuncionario = Console.ReadLine();
+            Console.WriteLine("Digite o seu salário Bruto! ");
+            decimal salarioBruto = decimal.Parse(Console.ReadLine());
+            decimal imposto = salarioBruto*0.08M;
+            CnpjEmpresa = cnpjEmpresa;
+            NomeEmpresa = nomeEmpresa;
+            EndereçoEmpresa = endereçoEmpresa;
+            CargoFuncionario = cargoFuncionario;
+            SalarioBruto = salarioBruto;
+            Imposto = imposto;  
+            SalarioLiquido = (salarioBruto - imposto);
+            }
+        private string CnpjEmpresa { get; set; }
+        private string NomeEmpresa { get; set; }
+        private string EndereçoEmpresa { get; set; }
+        private string CargoFuncionario { get; set; }
+        private decimal SalarioBruto { get; set; }
+        private decimal Imposto { get; set; }   
+        public decimal SalarioLiquido { get; set; }
+
+
+
         //Formatação do holerite:
-        //string holeriteCompleto = @$"
-        //EMPREGADOR                                                    RECIBO DE PAGAMENTO DE SALÁRIO
-        //{nomeEmpresa}                                              
-        //ENDEREÇO: {endereçoEmpresa}
-        //CNPJ: {cnpjEmpresa}
-        //
-        //FUNCIONÁRIO: {nomeFuncionario}  FUNÇÃO: {cargoEmpresa}
-        //
-        //
-        //SALÁRIO BASE                                                                             R$
-        //IMPOSTOS                                                                                 R$
-        //
-        //
-        //                                                              SALÁRIO LÍQUIDO:           R$
-        //";
+        //o campo (Cliente.Nome) nao esta funcionando! temos que ver como faszer ! kkk 
+        public void HoleriteCompleto()
+        {
+            Console.WriteLine(@$"
+        EMPREGADOR                                                    RECIBO DE PAGAMENTO DE SALÁRIO
+        {NomeEmpresa}                                              
+        ENDEREÇO: {EndereçoEmpresa}
+        CNPJ: {CnpjEmpresa}
+        
+        FUNCIONÁRIO: (Cliente.Nome)  FUNÇÃO: {CargoFuncionario}
+        
+        
+        SALÁRIO BRUTO                                                              {SalarioBruto}R$
+        IMPOSTOS                                                                        {Imposto}R$           
+        
+        
+                                                                SALÁRIO LÍQUIDO: {SalarioLiquido}R$
+        ");
+        }
     }
 }
