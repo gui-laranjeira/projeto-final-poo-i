@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
 {
-    internal class ContaInvestimento 
-    { 
+    public class ContaInvestimento : Conta
+    {
+        public double taxaManutencao = 0.08;
+
+        public ContaInvestimento(int numeroConta, Cliente cliente) : base(numeroConta, cliente)
+        {
+        }
+
+       
     }
 }
