@@ -9,18 +9,27 @@ namespace conta_bancaria.Models
     internal class ContaSalario : Conta
     {
         double taxaDeSaque = 0.3;
+        private TipoConta contaSalario;
+
         private Holerite Holerite { get; set; }
 
-        public ContaSalario(int numeroConta, Cliente cliente, Holerite holerite) : base(numeroConta, cliente)
+        public ContaSalario(int numeroConta, Cliente cliente, Holerite holerite) : base(cliente)
         {
             this.Holerite = holerite;
+            this.TipoDeConta = contaSalario;
         }
 
         
-        public void Depositar(double valor, string cnpj)
+        public void Depositar(string cnpj)
         {
-            base.Depositar(valor);
-            
+            if (Holerite.CnpjEmpresa == cnpj)
+            {
+                base.Depositar(Holerite.SalarioLiquido);
+            }
+            else
+            {
+                Console.WriteLine("CNPJ inserido não corresponde ao cnpj da empresa cadastrada");
+            }                   
         }
 
         public override double CalcularValorTarifaManutencao()

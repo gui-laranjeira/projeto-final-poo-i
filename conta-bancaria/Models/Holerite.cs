@@ -8,7 +8,7 @@ namespace conta_bancaria.Models
 {
     public class Holerite
     {
-        public Holerite()
+        public Holerite(Cliente cliente)
         {
             Console.WriteLine("Nos informe os dados do seu Holerite para criação da sua conta salário! ");
             Console.WriteLine("Digite o CNPJ da Empresa: ");
@@ -20,8 +20,8 @@ namespace conta_bancaria.Models
             Console.WriteLine("Digite o seu Cargo/Função na empresa: ");
             string cargoFuncionario = Console.ReadLine();
             Console.WriteLine("Digite o seu salário Bruto! ");
-            decimal salarioBruto = decimal.Parse(Console.ReadLine());
-            decimal imposto = salarioBruto * 0.08M;
+            double salarioBruto = double.Parse(Console.ReadLine());
+            double imposto = salarioBruto * 0.08;
             CnpjEmpresa = cnpjEmpresa;
             NomeEmpresa = nomeEmpresa;
             EndereçoEmpresa = endereçoEmpresa;
@@ -29,14 +29,16 @@ namespace conta_bancaria.Models
             SalarioBruto = salarioBruto;
             Imposto = imposto;
             SalarioLiquido = (salarioBruto - imposto);
+            NomeCliente = cliente.Nome;
         }
-        private string CnpjEmpresa { get; set; }
+        public string CnpjEmpresa { get; protected set; }
         private string NomeEmpresa { get; set; }
         private string EndereçoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
-        private decimal SalarioBruto { get; set; }
-        private decimal Imposto { get; set; }
-        public decimal SalarioLiquido { get; set; }
+        private double SalarioBruto { get; set; }
+        private double Imposto { get; set; }
+        public double SalarioLiquido { get; set; }
+        public string NomeCliente { get; set; }
 
 
 
@@ -50,7 +52,7 @@ namespace conta_bancaria.Models
         ENDEREÇO: {EndereçoEmpresa}
         CNPJ: {CnpjEmpresa}
         
-        FUNCIONÁRIO: (NomeCliente)  FUNÇÃO: {CargoFuncionario}
+        FUNCIONÁRIO: {NomeCliente}  FUNÇÃO: {CargoFuncionario}
         
         
         SALÁRIO BRUTO                                                              {SalarioBruto}R$
