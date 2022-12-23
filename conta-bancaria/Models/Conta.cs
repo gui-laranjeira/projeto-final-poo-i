@@ -9,13 +9,13 @@ namespace conta_bancaria.Models;
 public abstract class Conta
 {
     //construtor
-    public Conta(int numeroConta, Cliente cliente)
+    public Conta(Cliente cliente)
     {
-        NumeroConta = numeroConta;
+        NumeroConta = GerarNumeroConta();
         Cliente = cliente;
         Saldo = 0;
     }
-
+    public TipoConta TipoDeConta { get; protected set; }
     public int NumeroConta { get; set; }
     protected double Saldo { get; set; }
     public Cliente Cliente { get; set; }
@@ -66,5 +66,19 @@ public abstract class Conta
     {        
         double tarifa = taxaDeSaque * (Saldo / 100);
         return tarifa;
+    }
+
+    public enum TipoConta 
+    {
+        contaSalario,
+        contaPoupança,
+        contaInvestimento
+    }
+
+    public int GerarNumeroConta()
+    {
+        Random r1 = new Random();
+        int numeroConta = r1.Next(100000, 999999);
+        return numeroConta;
     }
 }
