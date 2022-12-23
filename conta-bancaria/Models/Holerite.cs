@@ -21,21 +21,21 @@ namespace conta_bancaria.Models
             string cargoFuncionario = Console.ReadLine();
             Console.WriteLine("Digite o seu salário Bruto! ");
             decimal salarioBruto = decimal.Parse(Console.ReadLine());
-            decimal imposto = salarioBruto*0.08M;
+            decimal imposto = salarioBruto * 0.08M;
             CnpjEmpresa = cnpjEmpresa;
             NomeEmpresa = nomeEmpresa;
             EndereçoEmpresa = endereçoEmpresa;
             CargoFuncionario = cargoFuncionario;
             SalarioBruto = salarioBruto;
-            Imposto = imposto;  
+            Imposto = imposto;
             SalarioLiquido = (salarioBruto - imposto);
-            }
+        }
         private string CnpjEmpresa { get; set; }
         private string NomeEmpresa { get; set; }
         private string EndereçoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
         private decimal SalarioBruto { get; set; }
-        private decimal Imposto { get; set; }   
+        private decimal Imposto { get; set; }
         public decimal SalarioLiquido { get; set; }
 
 
@@ -50,7 +50,7 @@ namespace conta_bancaria.Models
         ENDEREÇO: {EndereçoEmpresa}
         CNPJ: {CnpjEmpresa}
         
-        FUNCIONÁRIO: (Cliente.Nome)  FUNÇÃO: {CargoFuncionario}
+        FUNCIONÁRIO: (NomeCliente)  FUNÇÃO: {CargoFuncionario}
         
         
         SALÁRIO BRUTO                                                              {SalarioBruto}R$

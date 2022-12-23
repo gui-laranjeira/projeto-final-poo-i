@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
 {
-    internal class Cliente
+    public class Cliente
     {
         // public Cliente() { }
 
-        public Cliente(string nome, string sobrenome, string cpf, DateTime dataNascimento)
+        public Cliente(string nome, string sobrenome, int idade, string cpf, DateTime dataNascimento)
         {
             Nome = nome;
             Sobrenome = sobrenome;
+            Idade = idade;
             Cpf = cpf;
             DataNascimento= dataNascimento;
         }
 
+        public int Idade { get; set; }
         private string _nome;
         private string _sobrenome;
         public string Nome
