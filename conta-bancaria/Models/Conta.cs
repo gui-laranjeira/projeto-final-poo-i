@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models;
 
-internal abstract class Conta
+public abstract class Conta
 {
+    //construtor
     public Conta(int numeroConta, Cliente cliente)
     {
         NumeroConta = numeroConta;

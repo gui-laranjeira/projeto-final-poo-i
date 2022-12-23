@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
 {
-    internal class ContaPoupanca
+    public class ContaPoupanca 
     {
+        
+
     }
 }
