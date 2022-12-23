@@ -24,6 +24,7 @@ namespace conta_bancaria.Models
         // Método do deposito inicial 
         public double depositoInicial()
         {
+            Saldo = 0;
             bool deposito;
             double depositoMinimo;
 

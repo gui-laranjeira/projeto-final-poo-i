@@ -34,7 +34,7 @@ public abstract class Conta
         Console.WriteLine($"Dinheiro em conta: {Saldo}"); 
     }
 
-    public void Sacar(double valor)
+    public virtual void Sacar(double valor)
     {
         valor *= (-1);
         Movimentacoes.Add(valor);
