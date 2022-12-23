@@ -10,20 +10,17 @@ namespace conta_bancaria.Models
     public class ContaInvestimento : Conta
     {
         public double taxaDeManutencao = 0.08;
-  
+        bool check;
 
-
-        public ContaInvestimento(int numeroConta, Cliente cliente) : base(numeroConta, cliente)
+        public ContaInvestimento(int numeroConta, Cliente cliente) : base(cliente)
         {
         }
 
 
-        public string avaliarPerfilInvestidor(double valorDisponivel)
+        public string AvaliarPerfilInvestidor(double valorDisponivel)
         {
-            bool check;
-
             Console.WriteLine("\nDefina seu perfil de investidor! ");
-            Console.WriteLine("Qual valor tem disponível para investimento?");
+            Console.WriteLine("Você gosta de arriscar?");
             check = double.TryParse(Console.ReadLine(), out valorDisponivel);
 
             if (valorDisponivel > 500)
@@ -42,8 +39,26 @@ namespace conta_bancaria.Models
 
         public double InvestirEmAcoes(double investimento)
         {
+            double retornoDeInvestimento;
 
+            Console.WriteLine("Defina o valor de investimento: ");
+            check = double.TryParse(Console.ReadLine(), out investimento);
 
+            if (investimento > 500)
+            {
+                retornoDeInvestimento = investimento += (investimento * 10) / 100;
+                return retornoDeInvestimento;
+            }
+            else if (investimento > 1000)
+            {
+                retornoDeInvestimento = investimento += (investimento * 15) / 100;
+                return retornoDeInvestimento;
+            }
+            else if(investimento > 5000)
+            {
+                retornoDeInvestimento = investimento += (investimento * 20) / 100;
+                return retornoDeInvestimento;
+            }
             return investimento;
         }
 
@@ -52,8 +67,8 @@ namespace conta_bancaria.Models
             double tarifa = this.taxaDeManutencao * (Saldo / 100);
             return tarifa;
         }
-
-
-
     }
+
 }
+
+

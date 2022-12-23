@@ -15,7 +15,7 @@ namespace conta_bancaria.Models
 
 
         //Construtor: obrigará o deposito antes da abertura da conta
-        public ContaPoupanca(int numeroConta, Cliente cliente) : base(numeroConta, cliente)
+        public ContaPoupanca(int numeroConta, Cliente cliente) : base(cliente)
         {
             this.depositoMin = depositoInicial();
         }
