@@ -8,7 +8,7 @@ Console.WriteLine("*                                               *");
 Console.WriteLine("*************************************************\n");
 
 //CRIAÇÃO DE CONTA
-Console.WriteLine("CRIAÇÃO DE CONTA");
+Console.WriteLine("CRIAÇÃO DO CADASTRO\n");
 
 Console.WriteLine("Insira seu nome:");
 string nome = Console.ReadLine();
@@ -28,7 +28,7 @@ string dataDeNascimento = Console.ReadLine();
 Cliente cliente = new Cliente(nome, sobrenome, idade, cpf, dataDeNascimento);
 
 Console.Clear();
-Console.WriteLine("Cadastro realizado com sucesso!");
+Console.WriteLine("Pré-Cadastro realizado com sucesso!");
 Console.WriteLine($"\nBem vindo(a) {cliente.Nome} {cliente.Sobrenome}");
 
 
@@ -69,13 +69,13 @@ do
             //} while (!convertSalarioBruto);
 
             Holerite holerite = new Holerite(cliente);
-            ContaSalario conta = new ContaSalario(cliente, holerite);
+            ContaSalario contaS = new ContaSalario(cliente, holerite);
             break;
 
-        case 2:
-            //TODO sylmara implementa a criação da conta poupança
-
-            break;
+         case 2:
+             //TODO sylmara implementa a criação da conta poupança
+             ContaPoupanca contaP = new ContaPoupanca(cliente);
+             break;
 
         case 3:
             //TODO jezz implementa a criação da conta investimento

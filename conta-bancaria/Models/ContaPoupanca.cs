@@ -11,18 +11,17 @@ namespace conta_bancaria.Models
    {
         //Propriedades:
         public double taxaDeSaque = 0.035;
-        public double depositoMinimo { get; set; }
 
 
         //Construtor: obrigará o deposito antes da abertura da conta
         public ContaPoupanca(Cliente cliente) : base(cliente)
         {
-            this.depositoMinimo = depositoInicial();
+            depositoInicial();
         }
 
 
-        // Método do deposito inicial 
-        public double depositoInicial()
+        // Método privado pois ele será acessado somente na instanciação de um novo cliente
+        private void depositoInicial()
         {
             Saldo = 0;
             bool deposito;
@@ -34,11 +33,10 @@ namespace conta_bancaria.Models
             {
                 Console.WriteLine("\nDigite o valor a ser depositado: ");
                 deposito = double.TryParse(Console.ReadLine(), out depositoMinimo);
-            } while (depositoMinimo < 100.00);
+            } while (depositoMinimo < 100);
 
             //possuirá a mesma caracteristica do depósito normal (herdado da classe pai)
             base.Depositar(depositoMinimo);
-            return Saldo += depositoMinimo;
         }
 
         // por ser poupança, neste método, apenas caso o cliente seja maior de 18 anos ele irá funcionar
