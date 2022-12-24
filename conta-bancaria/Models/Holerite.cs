@@ -10,7 +10,7 @@ namespace conta_bancaria.Models
     {
         public Holerite(Cliente cliente)
         {
-            Console.WriteLine("Nos informe os dados do seu Holerite para criação da sua conta salário! ");
+            Console.WriteLine("\nPara criarmos uma conta salário, precisamos das informações do seu empregador.");
             Console.WriteLine("Digite o CNPJ da Empresa: ");
             string cnpjEmpresa = Console.ReadLine();
             Console.WriteLine("Digite a Razão Social: ");

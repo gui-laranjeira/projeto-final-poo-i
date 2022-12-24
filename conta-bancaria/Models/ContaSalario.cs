@@ -8,12 +8,13 @@ namespace conta_bancaria.Models
 {
     internal class ContaSalario : Conta
     {
-        double taxaDeSaque = 0.3;
+        private double taxaDeSaque = 0.3;
         private TipoConta contaSalario;
+
 
         private Holerite Holerite { get; set; }
 
-        public ContaSalario(int numeroConta, Cliente cliente, Holerite holerite) : base(cliente)
+        public ContaSalario(Cliente cliente, Holerite holerite) : base(cliente)
         {
             this.Holerite = holerite;
             this.TipoDeConta = contaSalario;

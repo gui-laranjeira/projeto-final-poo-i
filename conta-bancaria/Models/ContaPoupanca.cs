@@ -11,13 +11,13 @@ namespace conta_bancaria.Models
    {
         //Propriedades:
         public double taxaDeSaque = 0.035;
-        public double depositoMin { get; set; }
+        public double depositoMinimo { get; set; }
 
 
         //Construtor: obrigará o deposito antes da abertura da conta
-        public ContaPoupanca(int numeroConta, Cliente cliente) : base(cliente)
+        public ContaPoupanca(Cliente cliente) : base(cliente)
         {
-            this.depositoMin = depositoInicial();
+            this.depositoMinimo = depositoInicial();
         }
 
 
@@ -28,7 +28,7 @@ namespace conta_bancaria.Models
             bool deposito;
             double depositoMinimo;
 
-            Console.WriteLine("\nPara abertura de CONTA POUPANÇA é necessário um depósito inicial!\n *Valor mínimo de R$100,00*\n");
+            Console.WriteLine("\nPara abertura de CONTA POUPANÇA é necessário um depósito inicial!\n*Valor mínimo de R$100,00*\n");
             //validação do depósito:
             do
             {

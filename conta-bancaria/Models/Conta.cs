@@ -7,26 +7,29 @@ using System.Threading.Tasks;
 namespace conta_bancaria.Models;
 
 public abstract class Conta
-{
-    //construtor
+{   
+    //enum para definir tipo de conta, é definido pela classe filha
+    public TipoConta TipoDeConta { get; protected set; }
+    public int NumeroConta { get; set; }
+    protected double Saldo { get; set; }
+    public Cliente Cliente { get; set; }
+
+
     public Conta(Cliente cliente)
     {
         NumeroConta = GerarNumeroConta();
         Cliente = cliente;
         Saldo = 0;
     }
-    public TipoConta TipoDeConta { get; protected set; }
-    public int NumeroConta { get; set; }
-    protected double Saldo { get; set; }
-    public Cliente Cliente { get; set; }
+
 
     List<double> Movimentacoes = new ();
 
+    //taxa base, na classe abstrata é zero mas cada classe filha (tipo de conta) tem sua própria taxa
     double taxaDeSaque = 0;
 
 
-    //esse método tem q ser protected pra não ser possivel instanciar uma contaSalario sem inserir o CNPJ,
-    //ai é só criar um novo construtor na classe filha, mas público, e chamar o base.Depositar();
+    //esse método tem q ser protected pra não ser possivel instanciar uma contaSalario sem inserir o CNPJ
     protected virtual void Depositar(double valor)
     {
         Movimentacoes.Add(valor);

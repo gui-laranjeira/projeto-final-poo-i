@@ -10,7 +10,7 @@ namespace conta_bancaria.Models
     {
         // public Cliente() { }
 
-        public Cliente(string nome, string sobrenome, int idade, string cpf, DateTime dataNascimento)
+        public Cliente(string nome, string sobrenome, int idade, string cpf, string dataNascimento)
         {
             Nome = nome;
             Sobrenome = sobrenome;
@@ -26,7 +26,7 @@ namespace conta_bancaria.Models
         {
             get => _nome;
 
-            set
+            protected set
             {
                 if (value == string.Empty)
                 {
@@ -36,11 +36,11 @@ namespace conta_bancaria.Models
             }
         }
 
-        private string Sobrenome
+        public string Sobrenome
         {
             get => _sobrenome;
 
-            set
+            protected set
             {
                 if (value == string.Empty)
                 {
