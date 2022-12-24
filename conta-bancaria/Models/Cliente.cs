@@ -52,7 +52,7 @@ namespace conta_bancaria.Models
 
         private string Cpf { get; set; }
 
-        private DateTime DataNascimento { get; set; }
+        private string DataNascimento { get; set; }
 
         public void ExibirDados()
         {
