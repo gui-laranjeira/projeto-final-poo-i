@@ -65,6 +65,10 @@ public abstract class Conta
             Console.WriteLine(item.ToString("0.00") + "R$");
         }
         Console.WriteLine($"\nSaldo total: {Saldo.ToString("0.00")}R$");
+        if (Saldo<0)
+        {
+            Console.WriteLine($"\nValor a ser batido no próximo depósito por conta da taxa de manutenção: {Saldo.ToString("0.00")}R$");
+        }
     }
 
     public virtual double CalcularValorTarifaManutencao()
