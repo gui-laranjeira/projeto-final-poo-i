@@ -132,6 +132,9 @@ ContaSalario AbrirContaSalario()
 
     Holerite holerite = new Holerite(cliente, cnpj, nomeEmpresa, enderecoEmpresa, cargoFuncionario, salarioBruto);
     ContaSalario contaS = new ContaSalario(cliente, holerite);
+    holerite.HoleriteCompleto();
+    Console.WriteLine("\n\nDigite uma tecla para continuar!\n\n ");
+    Console.ReadKey();
     return contaS;
 }
 

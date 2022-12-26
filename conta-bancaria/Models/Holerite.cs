@@ -33,18 +33,24 @@ namespace conta_bancaria.Models
 
         public void HoleriteCompleto()
         {
-        Console.WriteLine(@$"
-        EMPREGADOR                                                    RECIBO DE PAGAMENTO DE SALÁRIO
-        {NomeEmpresa}                                              
-        ENDEREÇO: {EndereçoEmpresa}
-        CNPJ: {CnpjEmpresa}
+        Console.WriteLine(@$" 
+
+        HOLERITE
+
+        ____________________________________________________________________________________________________________
+        EMPREGADOR                                                                    RECIBO DE PAGAMENTO DE SALÁRIO
+        {NomeEmpresa.ToUpper()}   
+
+        ENDEREÇO: {EndereçoEmpresa.ToUpper()}           CNPJ: {CnpjEmpresa}
         
-        FUNCIONÁRIO: {NomeCliente} {SobrenomeCliente}  FUNÇÃO: {CargoFuncionario}
+        ____________________________________________________________________________________________________________
+        FUNCIONÁRIO: {NomeCliente.ToUpper()} {SobrenomeCliente.ToUpper()}       FUNÇÃO: {CargoFuncionario.ToUpper()}
         
         
-        SALÁRIO                                                                         {Salario}R$              
+        ____________________________________________________________________________________________________________
+        SALÁRIO                                                                    {Salario.ToString("0.00")} R$              
                
-             
+        ____________________________________________________________________________________________________________
         ");
         }
     }
