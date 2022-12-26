@@ -1,4 +1,5 @@
 ﻿using conta_bancaria.Models;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 Console.WriteLine("*************************************************");
@@ -48,28 +49,31 @@ do
     switch (inputAberturaDeConta)
     {
         case 1:
-            //Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
-            //Console.WriteLine("Insira o CNPJ da empresa:");
-            //string cnpj = Console.ReadLine();
+            Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
+            Console.WriteLine("Insira o CNPJ da empresa:");
+            string cnpj = Console.ReadLine();
 
-            //Console.WriteLine("\nInsira a Razão Social da empresa:");
-            //string nomeEmpresa = Console.ReadLine();
+            Console.WriteLine("\nInsira a Razão Social da empresa:");
+            string nomeEmpresa = Console.ReadLine();
 
-            //Console.WriteLine("\nInsira o endereço da empresa:");
-            //string enderecoEmpresa = Console.ReadLine();
+            Console.WriteLine("\nInsira o endereço da empresa:");
+            string enderecoEmpresa = Console.ReadLine();
 
-            //Console.WriteLine("\nQual seu cargo na empresa:");
-            //string cargoFuncoinario = Console.ReadLine();
+            Console.WriteLine("\nQual seu cargo na empresa:");
+            string cargoFuncionario = Console.ReadLine();
 
-            //bool convertSalarioBruto;
-            //do
-            //{
-            //    Console.WriteLine("\nInsira seu salário bruto:");
-            //    convertSalarioBruto = double.TryParse(Console.ReadLine(), out double salarioBruto);
-            //} while (!convertSalarioBruto);
+            double salarioBruto;
 
-            Holerite holerite = new Holerite(cliente);
+            bool convertSalarioBruto;
+            do
+            {
+                Console.WriteLine("\nInsira seu salário bruto:");
+                convertSalarioBruto = double.TryParse(Console.ReadLine(), out salarioBruto);
+            } while (!convertSalarioBruto);
+
+            Holerite holerite = new Holerite(cliente,cnpj,nomeEmpresa,enderecoEmpresa,cargoFuncionario,salarioBruto);
             ContaSalario contaS = new ContaSalario(cliente, holerite);
+            
             break;
 
          case 2:

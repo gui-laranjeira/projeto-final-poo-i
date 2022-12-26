@@ -19,7 +19,7 @@ namespace conta_bancaria.Models
             this.Holerite = holerite;
             this.TipoDeConta = contaSalario;
         }
-
+        
         
         public void Depositar(string cnpj)
         {

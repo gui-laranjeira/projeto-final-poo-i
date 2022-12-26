@@ -8,27 +8,17 @@ namespace conta_bancaria.Models
 {
     public class Holerite
     {
-        public Holerite(Cliente cliente)
+        public Holerite(Cliente cliente, string cnpjEmpresa, string nomeEmpresa, string endereçoEmpresa, string cargoFuncionario, double salarioB)
         {
-            Console.WriteLine("\nPara criarmos uma conta salário, precisamos das informações do seu empregador.");
-            Console.WriteLine("Digite o CNPJ da Empresa: ");
-            string cnpjEmpresa = Console.ReadLine();
-            Console.WriteLine("Digite a Razão Social: ");
-            string nomeEmpresa = Console.ReadLine();
-            Console.WriteLine("Digite o Endereço da Empresa: ");
-            string endereçoEmpresa = Console.ReadLine();
-            Console.WriteLine("Digite o seu Cargo/Função na empresa: ");
-            string cargoFuncionario = Console.ReadLine();
-            Console.WriteLine("Digite o seu salário Bruto! ");
-            double salarioBruto = double.Parse(Console.ReadLine());
-            double imposto = salarioBruto * 0.08;
+            
+            double imposto = salarioB * 0.08;
             CnpjEmpresa = cnpjEmpresa;
             NomeEmpresa = nomeEmpresa;
             EndereçoEmpresa = endereçoEmpresa;
             CargoFuncionario = cargoFuncionario;
-            SalarioBruto = salarioBruto;
+            SalarioBruto = salarioB;
             Imposto = imposto;
-            SalarioLiquido = (salarioBruto - imposto);
+            SalarioLiquido = (salarioB - imposto);
             NomeCliente = cliente.Nome;
         }
         public string CnpjEmpresa { get; protected set; }
@@ -40,10 +30,6 @@ namespace conta_bancaria.Models
         public double SalarioLiquido { get; set; }
         public string NomeCliente { get; set; }
 
-
-
-        //Formatação do holerite:
-        //o campo (Cliente.Nome) nao esta funcionando! temos que ver como faszer ! kkk 
         public void HoleriteCompleto()
         {
             Console.WriteLine(@$"
