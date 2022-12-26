@@ -10,7 +10,7 @@ namespace conta_bancaria.Models
     {
         private double taxaDeSaque { get; set; } = 0.3;
         public TipoConta contaSalario { get; protected set; }
-
+        public string CnpjEmpresa { get; protected set; }
 
         public Holerite Holerite { get; protected set; }
 
@@ -18,6 +18,7 @@ namespace conta_bancaria.Models
         {
             this.Holerite = holerite;
             this.TipoDeConta = contaSalario;
+            this.CnpjEmpresa = holerite.CnpjEmpresa;
         }
         
         
@@ -25,7 +26,7 @@ namespace conta_bancaria.Models
         {
             if (Holerite.CnpjEmpresa == cnpj)
             {
-                base.Depositar(Holerite.SalarioLiquido);
+                base.Depositar(Holerite.Salario);
             }
             else
             {

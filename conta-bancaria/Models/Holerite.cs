@@ -11,31 +11,29 @@ namespace conta_bancaria.Models
         public Holerite(Cliente cliente, string cnpjEmpresa, string nomeEmpresa, string endereçoEmpresa, string cargoFuncionario, double salarioB)
         {
             
-            double imposto = salarioB * 0.08;
+            
             CnpjEmpresa = cnpjEmpresa;
             NomeEmpresa = nomeEmpresa;
             EndereçoEmpresa = endereçoEmpresa;
             CargoFuncionario = cargoFuncionario;
-            SalarioBruto = salarioB;
-            Imposto = imposto;
-            SalarioLiquido = (salarioB - imposto);
+            Salario = salarioB;                    
             NomeCliente = cliente.Nome;
             SobrenomeCliente = cliente.Sobrenome;
         }
+
         public string CnpjEmpresa { get; protected set; }
         private string NomeEmpresa { get; set; }        
         private string EndereçoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
-        private double SalarioBruto { get; set; }
-        private double Imposto { get; set; }
-        public double SalarioLiquido { get; set; }
+        public double Salario { get; protected set; }       
+        
         public string NomeCliente { get; set; }
         public string SobrenomeCliente { get; set; }
        
 
         public void HoleriteCompleto()
         {
-            Console.WriteLine(@$"
+        Console.WriteLine(@$"
         EMPREGADOR                                                    RECIBO DE PAGAMENTO DE SALÁRIO
         {NomeEmpresa}                                              
         ENDEREÇO: {EndereçoEmpresa}
@@ -44,11 +42,9 @@ namespace conta_bancaria.Models
         FUNCIONÁRIO: {NomeCliente} {SobrenomeCliente}  FUNÇÃO: {CargoFuncionario}
         
         
-        SALÁRIO BRUTO                                                              {SalarioBruto}R$
-        IMPOSTOS                                                                        {Imposto}R$           
-        
-        
-                                                                SALÁRIO LÍQUIDO: {SalarioLiquido}R$
+        SALÁRIO                                                                         {Salario}R$              
+               
+             
         ");
         }
     }

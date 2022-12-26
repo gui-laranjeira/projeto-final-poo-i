@@ -12,7 +12,7 @@ namespace conta_bancaria.Models
         public double taxaDeManutencao = 0.08;
         bool check;
 
-        public ContaInvestimento(int numeroConta, Cliente cliente) : base(cliente)
+        public ContaInvestimento(Cliente cliente) : base(cliente)
         {
         }
 

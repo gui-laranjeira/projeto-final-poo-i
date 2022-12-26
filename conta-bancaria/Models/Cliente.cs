@@ -10,13 +10,13 @@ namespace conta_bancaria.Models
     {
         // public Cliente() { }
 
-        public Cliente(string nome, string sobrenome, int idade, string cpf, string dataNascimento)
+        public Cliente(string nome, string sobrenome, int idade, string cpf )
         {
             Nome = nome;
             Sobrenome = sobrenome;
             Idade = idade;
             Cpf = cpf;
-            DataNascimento= dataNascimento;
+            //DataNascimento= dataNascimento;
         }
 
         public int Idade { get; set; }
@@ -57,8 +57,8 @@ namespace conta_bancaria.Models
         public void ExibirDados()
         {
             Console.WriteLine($"Nome: {Nome} {Sobrenome}");
-            Console.WriteLine($"CPF: {Cpf}");
-            Console.WriteLine($"Data de nascimento: {DataNascimento}");
+            Console.WriteLine($"Idade: {Idade}");
+            Console.WriteLine($"CPF: {Cpf}");          
         }
     }
 }
