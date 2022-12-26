@@ -20,15 +20,18 @@ namespace conta_bancaria.Models
             Imposto = imposto;
             SalarioLiquido = (salarioB - imposto);
             NomeCliente = cliente.Nome;
+            SobrenomeCliente = cliente.Sobrenome;
         }
         public string CnpjEmpresa { get; protected set; }
-        private string NomeEmpresa { get; set; }
+        private string NomeEmpresa { get; set; }        
         private string EndereçoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
         private double SalarioBruto { get; set; }
         private double Imposto { get; set; }
         public double SalarioLiquido { get; set; }
         public string NomeCliente { get; set; }
+        public string SobrenomeCliente { get; set; }
+       
 
         public void HoleriteCompleto()
         {
@@ -38,7 +41,7 @@ namespace conta_bancaria.Models
         ENDEREÇO: {EndereçoEmpresa}
         CNPJ: {CnpjEmpresa}
         
-        FUNCIONÁRIO: {NomeCliente}  FUNÇÃO: {CargoFuncionario}
+        FUNCIONÁRIO: {NomeCliente} {SobrenomeCliente}  FUNÇÃO: {CargoFuncionario}
         
         
         SALÁRIO BRUTO                                                              {SalarioBruto}R$

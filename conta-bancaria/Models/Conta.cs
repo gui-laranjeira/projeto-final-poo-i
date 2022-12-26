@@ -71,12 +71,7 @@ public abstract class Conta
         return tarifa;
     }
 
-    public enum TipoConta 
-    {
-        contaSalario,
-        contaPoupança,
-        contaInvestimento
-    }
+    
 
     public int GerarNumeroConta()
     {

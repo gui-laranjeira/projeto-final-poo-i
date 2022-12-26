@@ -33,6 +33,16 @@ Console.WriteLine("Pré-Cadastro realizado com sucesso!");
 Console.WriteLine($"\nBem vindo(a) {cliente.Nome} {cliente.Sobrenome}");
 
 
+//Variáveis para abertura de conta salário
+string cnpj = "";
+string nomeEmpresa = "";
+string enderecoEmpresa = "";
+string cargoFuncionario = "";
+double salarioBruto = 0;
+
+
+
+
 bool convertAberturaConta;
 //ABERTURA DE CONTA
 do
@@ -46,34 +56,32 @@ do
 
     convertAberturaConta = convertInputUsuarioAberturaConta && (inputAberturaDeConta == 1 || inputAberturaDeConta == 3 || inputAberturaDeConta == 2);
 
+
+    
+
     switch (inputAberturaDeConta)
     {
         case 1:
             Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
             Console.WriteLine("Insira o CNPJ da empresa:");
-            string cnpj = Console.ReadLine();
+            cnpj = Console.ReadLine();
 
             Console.WriteLine("\nInsira a Razão Social da empresa:");
-            string nomeEmpresa = Console.ReadLine();
+            nomeEmpresa = Console.ReadLine();
 
             Console.WriteLine("\nInsira o endereço da empresa:");
-            string enderecoEmpresa = Console.ReadLine();
+            enderecoEmpresa = Console.ReadLine();
 
             Console.WriteLine("\nQual seu cargo na empresa:");
-            string cargoFuncionario = Console.ReadLine();
-
-            double salarioBruto;
+            cargoFuncionario = Console.ReadLine();                      
 
             bool convertSalarioBruto;
             do
             {
                 Console.WriteLine("\nInsira seu salário bruto:");
                 convertSalarioBruto = double.TryParse(Console.ReadLine(), out salarioBruto);
-            } while (!convertSalarioBruto);
-
-            Holerite holerite = new Holerite(cliente,cnpj,nomeEmpresa,enderecoEmpresa,cargoFuncionario,salarioBruto);
-            ContaSalario contaS = new ContaSalario(cliente, holerite);
-            
+            } while (!convertSalarioBruto);     
+                        
             break;
 
          case 2:
@@ -90,8 +98,8 @@ do
     Console.Clear();
 } while (!convertAberturaConta);
 
-//conta tem que ser aberta fora do do while, por isso armazenar as variaveis antes e abrir aqui
-//ContaSalario conta = new ContaSalario(cliente, holerite);
+Holerite holerite = new Holerite(cliente, cnpj, nomeEmpresa, enderecoEmpresa, cargoFuncionario, salarioBruto);
+ContaSalario conta = new ContaSalario(cliente, holerite);
 
 
 
@@ -111,54 +119,47 @@ do
     //se inserir 1
     if (key.Key == ConsoleKey.D1)
     {
-        Console.WriteLine("\nInsira o valor que quer depositar:");
-        double.TryParse(Console.ReadLine(), out double valorDeposito);
+        Console.Clear();
+        if (conta.TipoDeConta == TipoConta.contaSalario)
+        {
+            conta.Depositar(holerite.CnpjEmpresa);
+            Console.WriteLine($"{holerite.SalarioLiquido}R$ depositado com sucesso!");
+        }
+        else
+        {
+            Console.WriteLine("\nInsira o valor que quer depositar:");
+            double.TryParse(Console.ReadLine(), out double valorDeposito);
+            //alguem implementa aquiconta.Depositar()
+            Console.WriteLine($"{valorDeposito}R$ depositado com sucesso!");
+        }    
         
-
     }
     //se inserir 2
     else if (key.Key == ConsoleKey.D2)
     {
+        Console.Clear();
         Console.WriteLine("\nInsira o valor que quer sacar:");
         double.TryParse(Console.ReadLine(), out double valorSaque);
-       
-
+        conta.Sacar(valorSaque);
+        Console.WriteLine($"{valorSaque} sacado com sucesso!");
     }
     //se inserir 3
     else if (key.Key == ConsoleKey.D3)
     {
+        Console.Clear();
         Console.WriteLine("\nEmitir extrato>:");
+        conta.Extrato();
         Console.ReadLine();
     }
     //se inserir 4
     else if (key.Key == ConsoleKey.D4)
     {
+        Console.Clear();
         Console.WriteLine();
         cliente.ExibirDados();
         
     }
-    Console.Clear();
+    
 }
 while (key.Key != ConsoleKey.Escape);
-
-
-
-
-
-
-
-
-
-//Console.WriteLine("Qual operação deseja realizar?\n");
-//Console.WriteLine("(1) - Abrir Conta Salário");
-//Console.WriteLine("(2) - Abrir Conta Poupança");
-//Console.WriteLine("(3) - Abrir Conta Investimento");
-//Console.WriteLine("(4) - Sair");
-//Console.WriteLine("(5) - Entender o que o gui quis dizer com Rabdkmicamebte");
-
-
-//PRIMEIRO REGISTRAR O USUARIO (CRIAR Cliente)
-//Perguntar o tipo de conta que quer criar
-//Gerar a conta específica
-//Se for contaSalario, pedir os dados do empregador para gerar o holerite
 

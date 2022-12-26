@@ -10,7 +10,7 @@ namespace conta_bancaria.Models
    public class ContaPoupanca : Conta
    {
         //Propriedades:
-        public double taxaDeSaque = 0.035;
+        private double taxaDeSaque { get; set; } = 0.035;
 
 
         //Construtor: obrigará o deposito antes da abertura da conta
