@@ -34,19 +34,21 @@ public abstract class Conta
     {
         Movimentacoes.Add(valor);
         Saldo += valor;
-        Console.WriteLine($"Dinheiro em conta: {Saldo}"); 
+        Console.WriteLine($"Dinheiro em conta: {Saldo.ToString("0.00")}"); 
     }
 
     public virtual void Sacar(double valor)
     {
-        valor *= (-1);
-        Movimentacoes.Add(valor);
         if (Saldo >= valor)
         {
+            valor *= (-1);
             double taxa = CalcularValorTarifaManutencao();
             Saldo += valor;
             Saldo -= taxa;
-            Console.WriteLine($"Dinheiro em conta: {Saldo}");
+            Movimentacoes.Add(valor);
+            Movimentacoes.Add(taxa * (-1));
+            Console.WriteLine("Saque realizado com sucesso!");
+            Console.WriteLine($"Dinheiro em conta: {Saldo.ToString("0.00")}");
         }
         else
         {
@@ -60,9 +62,9 @@ public abstract class Conta
         Console.WriteLine("Extrato: \n");
         foreach(var item in Movimentacoes)
         {
-            Console.WriteLine(item + "R$");
+            Console.WriteLine(item.ToString("0.00") + "R$");
         }
-        Console.WriteLine($"\nSaldo total: {Saldo}R$");
+        Console.WriteLine($"\nSaldo total: {Saldo.ToString("0.00")}R$");
     }
 
     public virtual double CalcularValorTarifaManutencao()

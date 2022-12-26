@@ -33,7 +33,7 @@ if(tipoConta == "contaSalario")
                 Console.WriteLine("\nInsira o valor que quer sacar:");
                 double.TryParse(Console.ReadLine(), out double valorSaque);
                 contaS.Sacar(valorSaque);
-                Console.WriteLine($"\n{valorSaque}R$ sacado com sucesso!");
+                //Console.WriteLine($"\n{valorSaque}R$ sacado com sucesso!");
                 break;
             case 3:
                 Console.Clear();
