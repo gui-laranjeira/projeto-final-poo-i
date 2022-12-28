@@ -66,7 +66,26 @@ else if (tipoConta == "contaInvestimento")
 {
     ContaInvestimento contaI = new ContaInvestimento(cliente);
     Console.Clear();
-    Console.WriteLine("Conta Investimento aberta com sucesso!");
+    Console.WriteLine("Conta Investimento aberta com sucesso!\n");
+
+    bool check;
+    int inputUsuario;
+    do
+    {
+        Console.WriteLine("\nQual operação quer realizar?\n");
+        Console.WriteLine("(1) - Avaliar Perfil Investidor");
+        Console.WriteLine("(2) - Investir em ações");
+        check = int.TryParse(Console.ReadLine(), out inputUsuario);
+        
+    } while (!check);
+
+    switch(inputUsuario){
+
+        case 1:
+            Console.WriteLine("Vamos avaliar seu perfil!\n");
+            contaI.AvaliarPerfilInvestidor();
+            break;
+    }
 
 
 
@@ -156,6 +175,23 @@ int MenuDeOperacoes()
         return inputUsuario;
     } while (!convert);  
 }
+
+
+//int MenuInvestimento()
+//{
+//    bool check;
+//    int inputUsuario;
+//    do
+//    {
+//        Console.WriteLine("\nQual operação quer realizar?\n");
+//        Console.WriteLine("(1) - Avaliar Perfil Investidor");
+//        Console.WriteLine("(2) - Investir em ações");
+//        check = int.TryParse(Console.ReadLine(), out inputUsuario);
+//        return inputUsuario;
+//    } while (!check);
+
+//};
+
 
 
 //MÉTODO PARA RECEBER QUAL O TIPO DE CONTA O USUÁRIO QUER ABRIR, RETORNA A STRING COM O TIPO

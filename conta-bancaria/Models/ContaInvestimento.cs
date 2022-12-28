@@ -17,14 +17,14 @@ namespace conta_bancaria.Models
         }
 
 
-        public string AvaliarPerfilInvestidor(double valorDisponivel)
+        public string AvaliarPerfilInvestidor()
         {
             string[] respostas = new string[5];
             int contador = 0;
 
             Console.WriteLine("1 - Você gosta de correr riscos? ");
             respostas[0] = Console.ReadLine();
-            Console.WriteLine("2 - Você tem interesse por economia?");
+            Console.WriteLine("2 - Você tem interesse por econômia?");
             respostas[1] = Console.ReadLine();
             Console.WriteLine("3 - Você gosta da ideia 'devagar e sempre'?");
             respostas[2] = Console.ReadLine();
@@ -40,15 +40,18 @@ namespace conta_bancaria.Models
             }
             if (contador == 3)
             {
-                return "conservador";
+                Console.WriteLine("Você tem um perfil CONSERVADOR!");
+               // return "conservador";
             }
             else if (contador == 2)
             {
-                return "moderado";
+                Console.WriteLine("Você tem um perfil MODERADOR!");
+                //return "moderado";
             }
             else
             {
-                return"agressivo";
+                Console.WriteLine("Você tem um perfil AGRESSIVO!");
+                //return "agressivo";
             }
         }
     
