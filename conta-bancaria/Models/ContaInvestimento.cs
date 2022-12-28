@@ -19,27 +19,44 @@ namespace conta_bancaria.Models
 
         public string AvaliarPerfilInvestidor(double valorDisponivel)
         {
-            Console.WriteLine("\nDefina seu perfil de investidor! ");
-            Console.WriteLine("Você gosta de arriscar?");
-            check = double.TryParse(Console.ReadLine(), out valorDisponivel);
+            string[] respostas = new string[5];
+            int contador = 0;
 
-            if (valorDisponivel > 500)
+            Console.WriteLine("1 - Você gosta de correr riscos? ");
+            respostas[0] = Console.ReadLine();
+            Console.WriteLine("2 - Você tem interesse por economia?");
+            respostas[1] = Console.ReadLine();
+            Console.WriteLine("3 - Você gosta da ideia 'devagar e sempre'?");
+            respostas[2] = Console.ReadLine();
+            Console.WriteLine("4 - Você tem experiência com investimentos?");
+            respostas[3] = Console.ReadLine();
+            Console.WriteLine("5 - Pode se dar ao luxo de perder dinheiro?");
+            respostas[4] = Console.ReadLine();
+
+            foreach (string resposta in respostas)
             {
-                return "Conservador";
+                if (resposta == "nao")
+                    contador++;
             }
-            else if(valorDisponivel > 1000)
+            if (contador == 3)
             {
-                return "Moderado";
+                return "conservador";
+            }
+            else if (contador == 2)
+            {
+                return "moderado";
             }
             else
             {
-                return "Agressivo";
+                return"agressivo";
             }
         }
+    
 
-        public double InvestirEmAcoes(double investimento)
+    public double InvestirEmAcoes(double investimento)
         {
             double retornoDeInvestimento;
+             bool check;
 
             Console.WriteLine("Defina o valor de investimento: ");
             check = double.TryParse(Console.ReadLine(), out investimento);
