@@ -37,9 +37,8 @@ if(tipoConta == "contaSalario")
                 break;
             case 3:
                 Console.Clear();
-                
                 contaS.Extrato();
-                Console.WriteLine("\nPressione qualquer tecla para continuar!");
+                Console.WriteLine("\nPressione ENTER para continuar!");
                 Console.ReadLine();
                 break;
             case 4:
@@ -57,10 +56,43 @@ else if (tipoConta == "contaPoupanca")
     Console.Clear();
     Console.WriteLine("Conta Poupança aberta com sucesso!");
 
+   inputUsuario = OpcoesMenu();
 
 
+     switch (inputUsuario)
+     {
+        case 1:
+            Console.Clear();
+            Console.WriteLine("Digite o valor que deseja transferir:");
+            double valorTransf = double.Parse(Console.ReadLine());
+            contaP.TransferirParaPoupanca(valorTransf);
+            Console.WriteLine("\nPressione ENTER para continuar!");
+            break;
+        case 2:
+            Console.Clear();
+            Console.WriteLine("Digite o valor que deseja sacar: ");
+            double valorSaq = double.Parse(Console.ReadLine());
+            contaP.Sacar(valorSaq);
+            Console.WriteLine("\nPressione ENTER para continuar!");
+            break;
+        case 3:
+            Console.Clear();
+            contaP.Extrato();
+            Console.WriteLine("\nPressione ENTER para continuar!");
+            break;
+        case 4:
+            Console.Clear();
+            cliente.ExibirDados();
+            Console.WriteLine("\nPressione ENTER para continuar!");
+            break;
+        case 9:
+            break;
+     }
 
+     
+                                  
 }
+
 //IMPLEMENTAR AS FUNÇÕES PRA CONTA INVESTIMENTO -- JEZZ
 else if (tipoConta == "contaInvestimento")
 {
@@ -119,7 +151,7 @@ Cliente RegistrarCliente()
     Cliente cliente = new Cliente(nome, sobrenome, idade, cpf);
 
     Console.Clear();
-    Console.WriteLine("Pré-Cadastro realizado com sucesso!");
+    Console.WriteLine("Cadastro realizado com sucesso!");
     Console.WriteLine($"\nBem vindo(a) {cliente.Nome} {cliente.Sobrenome}");
     return cliente;
 }
