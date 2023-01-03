@@ -20,6 +20,7 @@ namespace conta_bancaria.Models
         public string AvaliarPerfilInvestidor()
         {
             string[] respostas = new string[5];
+            string perfilInvestidor;
             int contador = 0;
 
             Console.WriteLine("1 - Você gosta de correr riscos? ");
@@ -40,23 +41,24 @@ namespace conta_bancaria.Models
             }
             if (contador == 3)
             {
-                Console.WriteLine("Você tem um perfil CONSERVADOR!");
+                perfilInvestidor = "Você tem um perfil CONSERVADOR!";
                // return "conservador";
             }
             else if (contador == 2)
             {
-                Console.WriteLine("Você tem um perfil MODERADOR!");
+                perfilInvestidor = "Você tem um perfil MODERADOR!";
                 //return "moderado";
             }
             else
             {
-                Console.WriteLine("Você tem um perfil AGRESSIVO!");
-                //return "agressivo";
+                perfilInvestidor = "Você tem um perfil AGRESSIVO!";
+                
             }
+            return perfilInvestidor;
         }
-    
 
-    public double InvestirEmAcoes(double investimento)
+
+        public double InvestirEmAcoes(double investimento)
         {
             double retornoDeInvestimento;
              bool check;
