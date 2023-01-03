@@ -27,24 +27,29 @@ if(tipoConta == "contaSalario")
                 Console.Clear();
                 contaS.Depositar(contaS.CnpjEmpresa);
                 Console.WriteLine($"{contaS.Holerite.Salario}R$ depositado com sucesso!");
+                Console.WriteLine("\nPressione ENTER para continuar!");
+                Console.ReadKey();
                 break;
             case 2:
                 Console.Clear();
                 Console.WriteLine("\nInsira o valor que quer sacar:");
                 double.TryParse(Console.ReadLine(), out double valorSaque);
-                contaS.Sacar(valorSaque);
-                //Console.WriteLine($"\n{valorSaque}R$ sacado com sucesso!");
+                contaS.Sacar(valorSaque);                
+                Console.WriteLine("\nPressione ENTER para continuar!");
+                Console.ReadKey();
                 break;
             case 3:
                 Console.Clear();
                 contaS.Extrato();
                 Console.WriteLine("\nPressione ENTER para continuar!");
-                Console.ReadLine();
+                Console.ReadKey();
                 break;
             case 4:
                 Console.Clear();
                 Console.WriteLine();
                 cliente.ExibirDados();
+                Console.WriteLine("\nPressione ENTER para continuar!");
+                Console.ReadKey();
                 break;
         }
     } while (inputUsuario != 9);
@@ -52,11 +57,11 @@ if(tipoConta == "contaSalario")
 //IMPLEMENTAR AS FUNÇÕES PRA CONTA POUPANÇA -- SYLMARA
 else if (tipoConta == "contaPoupanca")
 {
-    ContaPoupanca contaP = new ContaPoupanca(cliente);
-    Console.Clear();
-    Console.WriteLine("Conta Poupança aberta com sucesso!");
+     ContaPoupanca contaP = new ContaPoupanca(cliente);
+     Console.Clear();
+     Console.WriteLine("Conta Poupança aberta com sucesso!");
 
-   inputUsuario = OpcoesMenu();
+     int inputUsuario = MenuDeOperacoes();
 
 
      switch (inputUsuario)
@@ -67,6 +72,7 @@ else if (tipoConta == "contaPoupanca")
             double valorTransf = double.Parse(Console.ReadLine());
             contaP.TransferirParaPoupanca(valorTransf);
             Console.WriteLine("\nPressione ENTER para continuar!");
+            Console.ReadKey();
             break;
         case 2:
             Console.Clear();
@@ -74,23 +80,23 @@ else if (tipoConta == "contaPoupanca")
             double valorSaq = double.Parse(Console.ReadLine());
             contaP.Sacar(valorSaq);
             Console.WriteLine("\nPressione ENTER para continuar!");
+            Console.ReadKey();
             break;
         case 3:
             Console.Clear();
             contaP.Extrato();
             Console.WriteLine("\nPressione ENTER para continuar!");
+            Console.ReadKey(); 
             break;
         case 4:
             Console.Clear();
             cliente.ExibirDados();
             Console.WriteLine("\nPressione ENTER para continuar!");
+            Console.ReadKey();
             break;
         case 9:
             break;
-     }
-
-     
-                                  
+     }                                
 }
 
 //IMPLEMENTAR AS FUNÇÕES PRA CONTA INVESTIMENTO -- JEZZ
@@ -118,12 +124,7 @@ else if (tipoConta == "contaInvestimento")
             contaI.AvaliarPerfilInvestidor();
             break;
     }
-
-
-
 }
-
-
 
 
 //MÉTODOS
@@ -143,10 +144,7 @@ Cliente RegistrarCliente()
     int.TryParse(Console.ReadLine(), out int idade);
 
     Console.WriteLine("\nInforme seu CPF: ");
-    string cpf = Console.ReadLine();
-
-    //Console.WriteLine("\nInforme sua data de nascimento:");
-    //string dataDeNascimento = Console.ReadLine();
+    string cpf = Console.ReadLine();    
 
     Cliente cliente = new Cliente(nome, sobrenome, idade, cpf);
 
