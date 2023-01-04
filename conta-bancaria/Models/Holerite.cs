@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
@@ -33,8 +34,18 @@ namespace conta_bancaria.Models
         public void AbrirHolerite()
         {
             Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
-            Console.WriteLine("Insira o CNPJ da empresa:");
-            string cnpj = Console.ReadLine();
+            
+            bool checkCnpj;
+            do
+            {
+                Console.WriteLine("Insira o CNPJ da empresa:");
+                string cnpj = Console.ReadLine();
+                checkCnpj = Regex.IsMatch(cnpj, @"^([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})+$");
+                if (checkCnpj)
+                {
+                    this.CnpjEmpresa = cnpj;
+                }
+            } while (!checkCnpj);
 
             Console.WriteLine("\nInsira a Razão Social da empresa:");
             string nomeEmpresa = Console.ReadLine();
@@ -52,8 +63,7 @@ namespace conta_bancaria.Models
                 Console.WriteLine("\nInsira seu salário bruto:");
                 convertSalarioBruto = double.TryParse(Console.ReadLine(), out salarioBruto);
             } while (!convertSalarioBruto);
-
-            this.CnpjEmpresa = cnpj;
+            
             this.NomeEmpresa = nomeEmpresa;
             this.EnderecoEmpresa = enderecoEmpresa;
             this.CargoFuncionario = cargoFuncionario;
