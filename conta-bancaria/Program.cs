@@ -99,34 +99,7 @@ else if (tipoConta == "contaPoupanca")
      }                                
 }
 
-//IMPLEMENTAR AS FUNÇÕES PRA CONTA INVESTIMENTO -- JEZZ
-//else if (tipoConta == "contaInvestimento")
-//{
-//    ContaInvestimento contaI = new ContaInvestimento(cliente);
-//    Console.Clear();
 
-//    contaI.AvaliarPerfilInvestidor();
-//    Console.WriteLine("Conta Investimento aberta com sucesso!\n");
-
-//    bool check;
-//    int inputUsuario;
-//    do
-//    {
-//        Console.WriteLine("\nQual operação quer realizar?\n");
-//        Console.WriteLine("(1) - Avaliar Perfil Investidor");
-//        Console.WriteLine("(2) - Investir em ações");
-//        check = int.TryParse(Console.ReadLine(), out inputUsuario);
-        
-//    } while (!check);
-
-//    switch(inputUsuario){
-
-//        case 1:
-//            Console.WriteLine("Vamos avaliar seu perfil!\n");
-//            contaI.AvaliarPerfilInvestidor();
-//            break;
-//    }
-//}
 
 
 //MÉTODO DE REGISTRAR O CLIENTE, RETORNA UM CLIENTE

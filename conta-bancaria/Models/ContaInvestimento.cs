@@ -23,7 +23,7 @@ namespace conta_bancaria.Models
             string perfilInvestidor;
             int contador = 0;
 
-            Console.WriteLine($"Ok, -NomeCliente- , vamos analisar seu perfil!\n Responda SIM OU NÃO");
+            Console.WriteLine($"Ok, , vamos analisar seu perfil!\n Responda SIM OU NÃO");
 
             Console.WriteLine("1 - Você gosta de correr riscos? ");
             respostas[0] = Console.ReadLine();
