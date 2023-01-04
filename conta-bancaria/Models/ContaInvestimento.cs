@@ -57,30 +57,26 @@ namespace conta_bancaria.Models
         }
 
 
-        public decimal InvestirEmAcoes(decimal investimento)
+        public decimal InvestirEmAcoes(decimal investimentoInicial)
         {
-            decimal retornoDeInvestimento, inicial;
-            bool check;
+            decimal retornoDeInvestimento;
 
-            Console.WriteLine("Defina o valor de investimento: ");
-            check = decimal.TryParse(Console.ReadLine(), out inicial);
-
-            if (investimento > 500)
+            if (investimentoInicial > 500)
             {
-                retornoDeInvestimento = inicial += (inicial * 10) / 100;
+                retornoDeInvestimento = investimentoInicial += (investimentoInicial * 10) / 100;
                 return retornoDeInvestimento;
             }
-            else if (investimento > 1000)
+            else if (investimentoInicial > 1000)
             {
-                retornoDeInvestimento = inicial += (inicial * 15) / 100;
+                retornoDeInvestimento = investimentoInicial += (investimentoInicial * 15) / 100;
                 return retornoDeInvestimento;
             }
-            else if (investimento > 5000)
+            else if (investimentoInicial > 5000)
             {
-                retornoDeInvestimento = inicial += (inicial * 20) / 100;
+                retornoDeInvestimento = investimentoInicial += (investimentoInicial * 20) / 100;
                 return retornoDeInvestimento;
             }
-            return investimento;
+            return investimentoInicial;
         }
 
         public override double CalcularValorTarifaManutencao()

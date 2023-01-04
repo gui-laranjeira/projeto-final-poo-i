@@ -239,16 +239,21 @@ string TipoDeContaParaAbertura()
             bool check;
             decimal investimento;
 
+            //comecei a criar a conta
             ContaInvestimento contaI = new ContaInvestimento(cliente);
             Console.Clear();
 
+            //para criar, avaliei o perfil > falta descobrir como eu retorno essa informação
             contaI.AvaliarPerfilInvestidor();
             Console.WriteLine("Para finalizar sua conta, digite quanto você deseja investir: ");
             check = decimal.TryParse(Console.ReadLine(), out investimento);
 
+            //pergunto ao uysuário quanto ele quer investir
             contaI.InvestirEmAcoes(investimento);
-            Console.WriteLine("Conta criada com sucesso!");
+            Console.WriteLine("Conta criada com sucesso!"); 
 
+            //tecnicamente agora eu deveria chamar o imprimir dados e exibir o menu
+            contaI.ExibirDados();
             MenuDeOperacoes();
 
             break;

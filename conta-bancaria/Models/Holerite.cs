@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
 {
-    public class Holerite
+    public class Holerite 
     {
         public Holerite(Cliente cliente, string cnpjEmpresa, string nomeEmpresa, string endereçoEmpresa, string cargoFuncionario, double salarioB)
-        {
-            
-            
+        {                  
             CnpjEmpresa = cnpjEmpresa;
             NomeEmpresa = nomeEmpresa;
             EndereçoEmpresa = endereçoEmpresa;
@@ -25,8 +23,7 @@ namespace conta_bancaria.Models
         private string NomeEmpresa { get; set; }        
         private string EndereçoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
-        public double Salario { get; protected set; }       
-        
+        public double Salario { get; protected set; }               
         public string NomeCliente { get; set; }
         public string SobrenomeCliente { get; set; }
        
