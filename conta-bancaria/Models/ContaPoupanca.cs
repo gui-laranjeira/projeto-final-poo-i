@@ -12,12 +12,52 @@ namespace conta_bancaria.Models
         //Propriedades:
         private double taxaDeSaque { get; set; } = 0.035;
 
-
         //Construtor: obrigará o deposito antes da abertura da conta
         public ContaPoupanca(Cliente cliente) : base(cliente)
         {
             depositoInicial();
         }
+
+        public void AbrirContaPoupanca()
+        {
+            int inputUsuario = MenuDeOperacoes();
+
+            switch (inputUsuario)
+            {
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("Digite o valor que deseja transferir:");
+                    double valorTransf = double.Parse(Console.ReadLine());
+                    contaP.TransferirParaPoupanca(valorTransf);
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("Digite o valor que deseja sacar: ");
+                    double valorSaq = double.Parse(Console.ReadLine());
+                    contaP.Sacar(valorSaq);
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 3:
+                    Console.Clear();
+                    contaP.Extrato();
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 4:
+                    Console.Clear();
+                    cliente.VisualizarDados();
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 9:
+                    break;
+            }
+
+        }
+
 
 
         // Método privado pois ele será acessado somente na instanciação de um novo cliente
@@ -42,16 +82,8 @@ namespace conta_bancaria.Models
         // por ser poupança, neste método, apenas caso o cliente seja maior de 18 anos ele irá funcionar
         public override void Sacar(double valor)
         {
-            if (Cliente.Idade >= 18)
-            {
-                base.Sacar(valor);
-            }
-            else
-            {
-                Console.WriteLine("Você ainda não tem idade para realizar essa operação");
-            }
+            base.Sacar(valor);
         }
-
 
         // Método especifico de transferência herdará as mesmas características do depósito
         public void TransferirParaPoupanca(double valor)
@@ -67,7 +99,7 @@ namespace conta_bancaria.Models
             return tarifa;
         }
 
-        public int  MenuOpcoes()
+        public int MenuOpcoes()
         {
             bool verificacao;
             int inputUsuario;
@@ -75,7 +107,7 @@ namespace conta_bancaria.Models
             {
                 Console.WriteLine("\n\nQual operação quer realizar\n");
                 Console.WriteLine("(1) - Transferir para poupança");
-                Console.WriteLine("(2) - Sacar (+18)");
+                Console.WriteLine("(2) - Sacar");
                 Console.WriteLine("(3) - Extrato");
                 Console.WriteLine("(4) - Dados cliente");
                 Console.WriteLine("(9) - Finalizar programa");

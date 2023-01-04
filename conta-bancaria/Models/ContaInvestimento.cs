@@ -10,35 +10,39 @@ namespace conta_bancaria.Models
     public class ContaInvestimento : Conta
     {
         private double taxaDeManutencao = 0.08;
+        public int NumeroConta { get; private set; }
 
 
         public ContaInvestimento(Cliente cliente) : base(cliente)
         {
+            AvaliarPerfilInvestidor();
+         
         }
-
 
         public string AvaliarPerfilInvestidor()
         {
-            string[] respostas = new string[5];
+            int[] respostas = new int[5];
             string perfilInvestidor;
             int contador = 0;
+            bool check; 
 
-            Console.WriteLine($"Ok, , vamos analisar seu perfil!\n Responda SIM OU NÃO");
-
-            Console.WriteLine("1 - Você gosta de correr riscos? ");
-            respostas[0] = Console.ReadLine();
-            Console.WriteLine("2 - Você tem interesse por econômia?");
-            respostas[1] = Console.ReadLine();
-            Console.WriteLine("3 - Você gosta da ideia 'devagar e sempre'?");
-            respostas[2] = Console.ReadLine();
-            Console.WriteLine("4 - Você tem experiência com investimentos?");
-            respostas[3] = Console.ReadLine();
-            Console.WriteLine("5 - Pode se dar ao luxo de perder dinheiro?");
-            respostas[4] = Console.ReadLine();
-
-            foreach (string resposta in respostas)
+            Console.WriteLine($"Ok, vamos analisar seu perfil!\nResponda (1) para sim ou (2) para não");
+            do
             {
-                if (resposta == "nao")
+                Console.WriteLine("1 - Você gosta de correr riscos? ");
+                check = int.TryParse(Console.ReadLine(), out respostas[0]);
+                Console.WriteLine("3 - Você gosta da ideia 'devagar e sempre'?");
+                check = int.TryParse(Console.ReadLine(), out respostas[1]);
+                Console.WriteLine("4 - Você tem experiência com investimentos?");
+                check = int.TryParse(Console.ReadLine(), out respostas[2]);
+                Console.WriteLine("5 - Pode se dar ao luxo de perder dinheiro?");
+                check = int.TryParse(Console.ReadLine(), out respostas[3]);
+            } while (!check);
+
+
+            foreach (int resposta in respostas)
+            {
+                if (resposta == 2)
                     contador++;
             }
             if (contador == 3)
@@ -54,6 +58,9 @@ namespace conta_bancaria.Models
                 perfilInvestidor = "Você tem um perfil AGRESSIVO!";              
             }
             return perfilInvestidor;
+
+            Console.WriteLine("Digite um valor para iniciar o investimento em ações");
+          
         }
 
 

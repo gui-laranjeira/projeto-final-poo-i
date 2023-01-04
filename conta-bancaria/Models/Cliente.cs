@@ -7,60 +7,53 @@ using System.Threading.Tasks;
 namespace conta_bancaria.Models
 {
     public class Cliente
-    {
-        // public Cliente() { }
-
-        public Cliente(string nome, string sobrenome, int idade, string cpf )
-        {
-            Nome = nome;
-            Sobrenome = sobrenome;
-            Idade = idade;
-            Cpf = cpf;
-            //DataNascimento= dataNascimento;
-        }
-
-        public int Idade { get; set; }
-        private string _nome;
-        private string _sobrenome;
-        public string Nome
-        {
-            get => _nome;
-
-            protected set
-            {
-                if (value == string.Empty)
-                {
-                    throw new ArgumentException("O nome não pode ser vazio. Insira um nome.");
-                }
-                _nome = value;
-            }
-        }
-
-        public string Sobrenome
-        {
-            get => _sobrenome;
-
-            protected set
-            {
-                if (value == string.Empty)
-                {
-                    throw new ArgumentException("O sobrenome não pode ser vazio. Insira um sobrenome.");
-                }
-                _sobrenome = value;
-            }
-        }
-
+    {       
+        public string Nome { get; protected set; }
+        public string Sobrenome { get; protected set; }
+        private int Idade { get; set; }
         private string Cpf { get; set; }
 
-        private string DataNascimento { get; set; }
+        public void RegistrarCliente()
+        {      
+            Console.WriteLine("Complete seu cadastro:\n"); 
+            do
+            {
+                Console.Write("Informe seu nome: ");
+                string nome = Console.ReadLine();
+                Nome = nome;
+            } while (Nome == string.Empty);
+            do
+            {
+                Console.Write("Informe seu sobrenome: ");
+                string sobrenome = Console.ReadLine();
+                Sobrenome = sobrenome;
+            } while(Sobrenome == string.Empty);
+            do
+            {
+                Console.Write("Informe sua idade: ");
+                int.TryParse(Console.ReadLine(), out int idade);
+                Idade = idade;       
+            } while (Idade < 18 || Idade > 100);
 
-        public void ExibirDados()
+            do
+            {
+                Console.Write("Informe seu CPF: ");
+                string cpf = Console.ReadLine();
+                Cpf = cpf;
+            }while(Cpf == string.Empty);
+
+            Console.Clear();
+        }
+
+        public void VisualizarDados()
         {
             Console.WriteLine("************************************");
-            Console.WriteLine($"Nome: \t{Nome} {Sobrenome}");
-            Console.WriteLine($"Idade: \t{Idade}");
-            Console.WriteLine($"CPF: \t{Cpf}");
+            Console.WriteLine($"Nome do cliente:\t{Nome} {Sobrenome}.");
+            Console.WriteLine($"Idade:\t {Idade}.");
+            Console.WriteLine($"Cpf:\t {Cpf}.");
             Console.WriteLine("************************************");
         }
+
     }
+
 }

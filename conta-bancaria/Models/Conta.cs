@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace conta_bancaria.Models;
 
 public abstract class Conta
-{   
+{
     //enum para definir tipo de conta, é definido pela classe filha
     public TipoConta TipoDeConta { get; protected set; }
     public int NumeroConta { get; set; }
@@ -23,7 +23,7 @@ public abstract class Conta
     }
 
 
-    List<double> Movimentacoes = new ();
+    List<double> Movimentacoes = new();
 
     //taxa base, na classe abstrata é zero mas cada classe filha (tipo de conta) tem sua própria taxa
     double taxaDeSaque = 0;
@@ -34,7 +34,7 @@ public abstract class Conta
     {
         Movimentacoes.Add(valor);
         Saldo += valor;
-        Console.WriteLine($"Dinheiro em conta: {Saldo.ToString("0.00")}"); 
+        Console.WriteLine($"Dinheiro em conta: {Saldo.ToString("0.00")}");
     }
 
     public virtual void Sacar(double valor)
@@ -54,30 +54,28 @@ public abstract class Conta
         {
             Console.WriteLine("Não há saldo suficiente em conta!");
         }
-        
+
     }
 
     public void Extrato()
     {
         Console.WriteLine("Extrato: \n");
-        foreach(var item in Movimentacoes)
+        foreach (var item in Movimentacoes)
         {
-            Console.WriteLine(item.ToString("0.00") + "R$");
+            Console.WriteLine("R$" + item.ToString("0.00"));
         }
-        Console.WriteLine($"\nSaldo total: {Saldo.ToString("0.00")}R$");
-        if (Saldo<0)
+        Console.WriteLine($"\nSaldo total: R$ {Saldo.ToString("0.00")}");
+        if (Saldo < 0)
         {
-            Console.WriteLine($"\nValor a ser batido no próximo depósito por conta da taxa de manutenção: {Saldo.ToString("0.00")}R$");
+            Console.WriteLine($"\nValor a ser batido no próximo depósito por conta da taxa de manutenção: R$ {Saldo.ToString("0.00")}");
         }
     }
 
     public virtual double CalcularValorTarifaManutencao()
-    {        
+    {
         double tarifa = taxaDeSaque * (Saldo / 100);
         return tarifa;
     }
-
-    
 
     public int GerarNumeroConta()
     {
@@ -86,3 +84,4 @@ public abstract class Conta
         return numeroConta;
     }
 }
+

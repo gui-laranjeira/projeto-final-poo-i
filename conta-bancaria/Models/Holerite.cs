@@ -8,25 +8,58 @@ namespace conta_bancaria.Models
 {
     public class Holerite 
     {
-        public Holerite(Cliente cliente, string cnpjEmpresa, string nomeEmpresa, string endereçoEmpresa, string cargoFuncionario, double salarioB)
+        public Holerite(Cliente cliente)
         {                  
-            CnpjEmpresa = cnpjEmpresa;
-            NomeEmpresa = nomeEmpresa;
-            EndereçoEmpresa = endereçoEmpresa;
-            CargoFuncionario = cargoFuncionario;
-            Salario = salarioB;                    
+            //CnpjEmpresa = cnpjEmpresa;
+            //NomeEmpresa = nomeEmpresa;
+            //EndereçoEmpresa = endereçoEmpresa;
+            //CargoFuncionario = cargoFuncionario;
+            //Salario = salarioB;                    
             NomeCliente = cliente.Nome;
             SobrenomeCliente = cliente.Sobrenome;
         }
 
+
+
         public string CnpjEmpresa { get; protected set; }
         private string NomeEmpresa { get; set; }        
-        private string EndereçoEmpresa { get; set; }
+        private string EnderecoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
         public double Salario { get; protected set; }               
         public string NomeCliente { get; set; }
         public string SobrenomeCliente { get; set; }
        
+
+        public void AbrirHolerite()
+        {
+            Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
+            Console.WriteLine("Insira o CNPJ da empresa:");
+            string cnpj = Console.ReadLine();
+
+            Console.WriteLine("\nInsira a Razão Social da empresa:");
+            string nomeEmpresa = Console.ReadLine();
+
+            Console.WriteLine("\nInsira o endereço da empresa:");
+            string enderecoEmpresa = Console.ReadLine();
+
+            Console.WriteLine("\nQual seu cargo na empresa:");
+            string cargoFuncionario = Console.ReadLine();
+
+            bool convertSalarioBruto;
+            double salarioBruto;
+            do
+            {
+                Console.WriteLine("\nInsira seu salário bruto:");
+                convertSalarioBruto = double.TryParse(Console.ReadLine(), out salarioBruto);
+            } while (!convertSalarioBruto);
+
+            this.CnpjEmpresa = cnpj;
+            this.NomeEmpresa = nomeEmpresa;
+            this.EnderecoEmpresa = enderecoEmpresa;
+            this.CargoFuncionario = cargoFuncionario;
+            this.Salario = salarioBruto;
+        }
+
 
         public void HoleriteCompleto()
         {
@@ -38,7 +71,7 @@ namespace conta_bancaria.Models
         EMPREGADOR                                                                    RECIBO DE PAGAMENTO DE SALÁRIO
         {NomeEmpresa.ToUpper()}   
 
-        ENDEREÇO: {EndereçoEmpresa.ToUpper()}           CNPJ: {CnpjEmpresa}
+        ENDEREÇO: {EnderecoEmpresa.ToUpper()}           CNPJ: {CnpjEmpresa}
         
         ____________________________________________________________________________________________________________
         FUNCIONÁRIO: {NomeCliente.ToUpper()} {SobrenomeCliente.ToUpper()}       FUNÇÃO: {CargoFuncionario.ToUpper()}
