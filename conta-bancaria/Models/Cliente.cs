@@ -56,9 +56,11 @@ namespace conta_bancaria.Models
 
         public void ExibirDados()
         {
-            Console.WriteLine($"Nome: {Nome} {Sobrenome}");
-            Console.WriteLine($"Idade: {Idade}");
-            Console.WriteLine($"CPF: {Cpf}");          
+            Console.WriteLine("************************************");
+            Console.WriteLine($"Nome: \t{Nome} {Sobrenome}");
+            Console.WriteLine($"Idade: \t{Idade}");
+            Console.WriteLine($"CPF: \t{Cpf}");
+            Console.WriteLine("************************************");
         }
     }
 }

@@ -100,50 +100,51 @@ else if (tipoConta == "contaPoupanca")
 }
 
 //IMPLEMENTAR AS FUNÇÕES PRA CONTA INVESTIMENTO -- JEZZ
-else if (tipoConta == "contaInvestimento")
-{
-    ContaInvestimento contaI = new ContaInvestimento(cliente);
-    Console.Clear();
-    Console.WriteLine("Conta Investimento aberta com sucesso!\n");
+//else if (tipoConta == "contaInvestimento")
+//{
+//    ContaInvestimento contaI = new ContaInvestimento(cliente);
+//    Console.Clear();
 
-    bool check;
-    int inputUsuario;
-    do
-    {
-        Console.WriteLine("\nQual operação quer realizar?\n");
-        Console.WriteLine("(1) - Avaliar Perfil Investidor");
-        Console.WriteLine("(2) - Investir em ações");
-        check = int.TryParse(Console.ReadLine(), out inputUsuario);
+//    contaI.AvaliarPerfilInvestidor();
+//    Console.WriteLine("Conta Investimento aberta com sucesso!\n");
+
+//    bool check;
+//    int inputUsuario;
+//    do
+//    {
+//        Console.WriteLine("\nQual operação quer realizar?\n");
+//        Console.WriteLine("(1) - Avaliar Perfil Investidor");
+//        Console.WriteLine("(2) - Investir em ações");
+//        check = int.TryParse(Console.ReadLine(), out inputUsuario);
         
-    } while (!check);
+//    } while (!check);
 
-    switch(inputUsuario){
+//    switch(inputUsuario){
 
-        case 1:
-            Console.WriteLine("Vamos avaliar seu perfil!\n");
-            contaI.AvaliarPerfilInvestidor();
-            break;
-    }
-}
+//        case 1:
+//            Console.WriteLine("Vamos avaliar seu perfil!\n");
+//            contaI.AvaliarPerfilInvestidor();
+//            break;
+//    }
+//}
 
 
-//MÉTODOS
 //MÉTODO DE REGISTRAR O CLIENTE, RETORNA UM CLIENTE
 Cliente RegistrarCliente()
 {
     //CRIAÇÃO DE CONTA
     Console.WriteLine("CRIAÇÃO DO CADASTRO\n");
 
-    Console.WriteLine("Insira seu nome:");
+    Console.Write("Informe seu nome: ");
     string nome = Console.ReadLine();
 
-    Console.WriteLine("\nInsira seu sobrenome:");
+    Console.Write("Informe seu sobrenome: ");
     string sobrenome = Console.ReadLine();
 
-    Console.WriteLine("\nInforme sua idade:");
+    Console.WriteLine("Informe sua idade: ");
     int.TryParse(Console.ReadLine(), out int idade);
 
-    Console.WriteLine("\nInforme seu CPF: ");
+    Console.WriteLine("Informe seu CPF: ");
     string cpf = Console.ReadLine();    
 
     Cliente cliente = new Cliente(nome, sobrenome, idade, cpf);
@@ -194,7 +195,7 @@ int MenuDeOperacoes()
     bool convert;
     do
     {
-        Console.WriteLine("\n\nQual operação quer realizar\n");
+        Console.WriteLine("\n\nQual operação quer realizar?\n");
 
         Console.WriteLine("(1) - Depositar");
         Console.WriteLine("(2) - Sacar");
@@ -207,38 +208,24 @@ int MenuDeOperacoes()
 }
 
 
-//int MenuInvestimento()
-//{
-//    bool check;
-//    int inputUsuario;
-//    do
-//    {
-//        Console.WriteLine("\nQual operação quer realizar?\n");
-//        Console.WriteLine("(1) - Avaliar Perfil Investidor");
-//        Console.WriteLine("(2) - Investir em ações");
-//        check = int.TryParse(Console.ReadLine(), out inputUsuario);
-//        return inputUsuario;
-//    } while (!check);
-
-//};
-
-
 
 //MÉTODO PARA RECEBER QUAL O TIPO DE CONTA O USUÁRIO QUER ABRIR, RETORNA A STRING COM O TIPO
 string TipoDeContaParaAbertura()
 {
     bool convert;
     int inputAberturaConta;
-    do
-    {
+
+    do{
         Console.WriteLine("\n\nQual tipo de conta deseja abrir?\n");
         Console.WriteLine("(1) - Abrir Conta Salário");
         Console.WriteLine("(2) - Abrir Conta Poupança");
         Console.WriteLine("(3) - Abrir Conta Investimento");
-
         convert = int.TryParse(Console.ReadLine(), out inputAberturaConta);
-    } while (!convert && (inputAberturaConta >= 1 || inputAberturaConta <= 3));        
+
+    } while (!convert && (inputAberturaConta >= 1 || inputAberturaConta <= 3));  
+    
     string tipoConta = "";
+
     switch (inputAberturaConta)
     {
         case 1:
@@ -249,6 +236,21 @@ string TipoDeContaParaAbertura()
             break;
         case 3:
             tipoConta = "contaInvestimento";
+            bool check;
+            decimal investimento;
+
+            ContaInvestimento contaI = new ContaInvestimento(cliente);
+            Console.Clear();
+
+            contaI.AvaliarPerfilInvestidor();
+            Console.WriteLine("Para finalizar sua conta, digite quanto você deseja investir: ");
+            check = decimal.TryParse(Console.ReadLine(), out investimento);
+
+            contaI.InvestirEmAcoes(investimento);
+            Console.WriteLine("Conta criada com sucesso!");
+
+            MenuDeOperacoes();
+
             break;
     }
     return tipoConta;

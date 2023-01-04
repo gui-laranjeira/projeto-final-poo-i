@@ -9,8 +9,8 @@ namespace conta_bancaria.Models
 {
     public class ContaInvestimento : Conta
     {
-        public double taxaDeManutencao = 0.08;
-        bool check;
+        private double taxaDeManutencao = 0.08;
+
 
         public ContaInvestimento(Cliente cliente) : base(cliente)
         {
@@ -22,6 +22,8 @@ namespace conta_bancaria.Models
             string[] respostas = new string[5];
             string perfilInvestidor;
             int contador = 0;
+
+            Console.WriteLine($"Ok, -NomeCliente- , vamos analisar seu perfil!\n Responda SIM OU NÃO");
 
             Console.WriteLine("1 - Você gosta de correr riscos? ");
             respostas[0] = Console.ReadLine();
@@ -42,43 +44,40 @@ namespace conta_bancaria.Models
             if (contador == 3)
             {
                 perfilInvestidor = "Você tem um perfil CONSERVADOR!";
-               // return "conservador";
             }
             else if (contador == 2)
             {
-                perfilInvestidor = "Você tem um perfil MODERADOR!";
-                //return "moderado";
+                perfilInvestidor = "Você tem um perfil MODERADOR!";              
             }
             else
             {
-                perfilInvestidor = "Você tem um perfil AGRESSIVO!";
-                
+                perfilInvestidor = "Você tem um perfil AGRESSIVO!";              
             }
             return perfilInvestidor;
         }
 
 
-        public double InvestirEmAcoes(double investimento)
+        public decimal InvestirEmAcoes(decimal investimento)
         {
-            double retornoDeInvestimento;
-             bool check;
+            decimal retornoDeInvestimento, inicial;
+            bool check;
 
             Console.WriteLine("Defina o valor de investimento: ");
-            check = double.TryParse(Console.ReadLine(), out investimento);
+            check = decimal.TryParse(Console.ReadLine(), out inicial);
 
             if (investimento > 500)
             {
-                retornoDeInvestimento = investimento += (investimento * 10) / 100;
+                retornoDeInvestimento = inicial += (inicial * 10) / 100;
                 return retornoDeInvestimento;
             }
             else if (investimento > 1000)
             {
-                retornoDeInvestimento = investimento += (investimento * 15) / 100;
+                retornoDeInvestimento = inicial += (inicial * 15) / 100;
                 return retornoDeInvestimento;
             }
-            else if(investimento > 5000)
+            else if (investimento > 5000)
             {
-                retornoDeInvestimento = investimento += (investimento * 20) / 100;
+                retornoDeInvestimento = inicial += (inicial * 20) / 100;
                 return retornoDeInvestimento;
             }
             return investimento;
