@@ -99,7 +99,7 @@ string TipoDeContaParaAbertura()
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Digite o valor que deseja transferir:");
+                        Console.WriteLine("Digite o valor que deseja transferir para poupança:");
                         double valorTransf = double.Parse(Console.ReadLine());
                         if (valorTransf < 0)
                             valorTransf *= -1;
