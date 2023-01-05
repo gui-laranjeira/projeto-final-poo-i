@@ -39,7 +39,16 @@ namespace conta_bancaria.Models
         // por ser poupança, neste método, apenas caso o cliente seja maior de 18 anos ele irá funcionar
         public override void Sacar(double valor, double taxaDeSaque)
         {
-            base.Sacar(valor,taxaDeSaque);
+            Console.WriteLine("Para concluir o Saque, digite os 3 primeiros digitos do seu CPF");
+            string senhaCPF = Console.ReadLine();
+            if (Cliente.Cpf.StartsWith(senhaCPF))
+            {
+                base.Sacar(valor, taxaDeSaque);
+            }
+            else
+            {
+                Console.WriteLine("Senha inválida");
+            }
         }
 
         // Método especifico de transferência herdará as mesmas características do depósito

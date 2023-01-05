@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,11 @@ namespace conta_bancaria.Models
 
         public void Depositar(string cnpj)  
         {
-            if (Holerite.CnpjEmpresa == cnpj)
+            Console.WriteLine("Para concluir o Deposito, digite os 3 primeiros digitos do CNPJ da Empresa");
+            string senhaCNPJ = Console.ReadLine();
+            if (Holerite.CnpjEmpresa.StartsWith(senhaCNPJ))
             {
+                Console.WriteLine($"Salário depositado com sucesso: R${Holerite.Salario.ToString("0.00")}");
                 base.Depositar(Holerite.Salario);
             }
             else

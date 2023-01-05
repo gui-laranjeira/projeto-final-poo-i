@@ -40,7 +40,7 @@ public abstract class Conta
     {
         if (Saldo >= valor)
         {
-            double taxa = taxaDeSaque * (valor / 100);
+            double taxa = CalcularValorTarifaManutencao(valor, taxaDeSaque);
             valor *= (-1);
             Saldo += valor;
             Saldo -= taxa;
@@ -69,6 +69,13 @@ public abstract class Conta
             Console.WriteLine($"\nValor a ser batido no próximo depósito por conta da taxa de manutenção: R$ {Saldo.ToString("0.00")}");
         }
     }
+
+    public double CalcularValorTarifaManutencao(double valor , double taxaDeSaque)
+    {
+        double taxa = taxaDeSaque * (valor / 100);
+        return taxa;
+    }
+
     public int GerarNumeroConta()
     {
         Random r1 = new Random();

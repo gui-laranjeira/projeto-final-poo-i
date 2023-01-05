@@ -50,7 +50,6 @@ string TipoDeContaParaAbertura()
                     case 1:
                         Console.Clear();
                         contaS.Depositar(contaS.CnpjEmpresa);
-                        Console.WriteLine($"Salário depositado com sucesso: R${contaS.Holerite.Salario.ToString("0.00")}");
                         Console.WriteLine("\nPressione ENTER para continuar!");
                         Console.ReadKey();
                         break;

@@ -12,7 +12,7 @@ namespace conta_bancaria.Models
         public string Nome { get; protected set; }
         public string Sobrenome { get; protected set; }
         private int Idade { get; set; }
-        private string Cpf { get; set; }
+        public string Cpf { get; private set; }
 
         public void RegistrarCliente()
         {      
