@@ -27,18 +27,17 @@ namespace conta_bancaria.Models
         public void AbrirHolerite()
         {
             Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
-            
-            bool checkCnpj;
+
             do
             {
-                Console.WriteLine("Insira o CNPJ da empresa:");
+                Console.Write("Informe o CNPJ da empresa (apenas números): ");
                 string cnpj = Console.ReadLine();
-                checkCnpj = Regex.IsMatch(cnpj, @"^([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})+$");
-                if (checkCnpj)
+                if (long.TryParse(cnpj, out long teste))
                 {
                     this.CnpjEmpresa = cnpj;
                 }
-            } while (!checkCnpj);
+
+            } while (String.IsNullOrEmpty(CnpjEmpresa));
 
             Console.WriteLine("\nInsira a Razão Social da empresa:");
             string nomeEmpresa = Console.ReadLine();
