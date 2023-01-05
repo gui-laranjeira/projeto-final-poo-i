@@ -26,7 +26,7 @@ namespace conta_bancaria.Models
             int contador = 0;
             bool check; 
 
-            Console.WriteLine($"Ok, vamos analisar seu perfil!\nResponda (1) para sim ou (2) para não");
+            Console.WriteLine($"\nOk, vamos analisar seu perfil!\n\nResponda (1) para sim ou (2) para não");
             do
             {
                 Console.WriteLine("1 - Você gosta de correr riscos? ");
@@ -68,14 +68,13 @@ namespace conta_bancaria.Models
             }
             Console.Clear();
             Console.WriteLine($"Seu perfil é {perfilInvestidor}");
-            Console.WriteLine("Pressione enter para continuar...");
+            Console.WriteLine("\nPressione ENTER para continuar...");
             Console.ReadKey();
         }
      
         public void InvestirEmAcoes(double investimentoInicial)
         {
-            double retorno = 0;
-            double investimentoFinal = 0;
+            double retorno = 0;            
 
             if (investimentoInicial < 500)
             {
@@ -90,9 +89,9 @@ namespace conta_bancaria.Models
                 retorno = investimentoInicial + investimentoInicial * 20 / 100;
             }
 
-            Console.WriteLine($"Sua valor de deposito é: {investimentoInicial}");
-            Console.WriteLine($"Sua rentabilidade mensal será de {retorno}");
-            Console.WriteLine("Pressione enter para continuar...");
+            Console.WriteLine($"\nSua valor de deposito é: R${investimentoInicial.ToString("0.00")}");
+            Console.WriteLine($"No final do mês seu dinheiro renderá para: R${retorno.ToString("0.00")}");
+            Console.WriteLine("\nPressione ENTER para continuar...");
             Console.ReadKey();
             base.Depositar(investimentoInicial);
         }

@@ -25,7 +25,8 @@ namespace conta_bancaria.Models
                 checkNome = nome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
                 if (checkNome)
                 {
-                    Nome = nome;             
+                    Nome = nome;
+                    break;
                 }    
             } while (!checkNome);
 
@@ -45,20 +46,28 @@ namespace conta_bancaria.Models
             {
                 Console.Write("Informe sua idade: ");
                 int.TryParse(Console.ReadLine(), out int idade);
-                Idade = idade;       
+                if(idade < 18)
+                {
+                    Console.WriteLine("Você precisa ser maior de idade para abrir uma conta no nosso banco!");
+                }
+                else
+                {
+                    Idade = idade;
+                }
+                      
             } while (Idade < 18 || Idade > 100);
 
-            bool checkCpf;
+
             do
             {
-                Console.Write("Informe seu CPF: ");
+                Console.Write("Informe seu CPF (apenas números): ");
                 string cpf = Console.ReadLine();
-                checkCpf = Regex.IsMatch(cpf, @"^([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})+$");
-                if (checkCpf)
+                if (long.TryParse(cpf, out long teste))
                 {
                     Cpf = cpf;
-                }                    
-            }while(!checkCpf);
+                }
+
+            } while (String.IsNullOrEmpty(Cpf)); 
 
             Console.Clear();
         }
@@ -66,9 +75,9 @@ namespace conta_bancaria.Models
         public void VisualizarDados()
         {
             Console.WriteLine("******************************************");
-            Console.WriteLine($"Nome do cliente:\t{Nome} {Sobrenome}.");
-            Console.WriteLine($"Idade:\t{Idade}.");
-            Console.WriteLine($"Cpf:\t{Cpf}.");
+            Console.WriteLine($"Nome do cliente: \t {Nome} {Sobrenome}.");
+            Console.WriteLine($"Idade: \t {Idade}.");
+            Console.WriteLine($"Cpf: \t {Cpf}.");
             Console.WriteLine("******************************************");
         }
 

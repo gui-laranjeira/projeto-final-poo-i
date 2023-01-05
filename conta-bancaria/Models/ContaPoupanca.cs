@@ -24,7 +24,7 @@ namespace conta_bancaria.Models
             bool deposito;
             double depositoMinimo;
 
-            Console.WriteLine("\nPara abertura de CONTA POUPANÇA é necessário um depósito inicial!\n*Valor mínimo de R$100,00*\n");
+            Console.WriteLine("\nPara abertura de CONTA POUPANÇA é necessário um depósito inicial!\n\n*Valor mínimo de R$100,00*\n");
             //validação do depósito:
             do
             {
