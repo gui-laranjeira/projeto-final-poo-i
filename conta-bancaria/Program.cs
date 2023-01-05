@@ -12,7 +12,6 @@ cliente.RegistrarCliente();
 int numeroConta;
 string tipoConta = TipoDeContaParaAbertura();
 
-
 string TipoDeContaParaAbertura()
 {
     bool convert;
@@ -133,7 +132,7 @@ string TipoDeContaParaAbertura()
             tipoConta = "contaInvestimento";
 
             bool check;
-            decimal investimento;
+            double investimento;
 
             ContaInvestimento contaI = new ContaInvestimento(cliente);
 
@@ -142,10 +141,44 @@ string TipoDeContaParaAbertura()
             Console.Clear();
 
             Console.WriteLine("Para finalizar sua conta, digite quanto você deseja investir: ");
-            check = decimal.TryParse(Console.ReadLine(), out investimento);
+            check = double.TryParse(Console.ReadLine(), out investimento);
             contaI.InvestirEmAcoes(investimento);
 
-            MenuDeOperacoes();
+            do
+            {
+                inputUsuario = MenuDeOperacoes();
+                switch (inputUsuario)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Digite o valor que deseja transferir:");
+                        double valorTransf = double.Parse(Console.ReadLine());
+                        contaI.Transferir(valorTransf);
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Digite o valor que deseja sacar: ");
+                        double valorSaq = double.Parse(Console.ReadLine());
+                        contaI.Sacar(valorSaq);
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        contaI.Extrato();
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        cliente.VisualizarDados();
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                }
+            } while (inputUsuario != 9);
             break;
     }
     return tipoConta;

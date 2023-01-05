@@ -10,17 +10,10 @@ namespace conta_bancaria.Models
     public class Holerite 
     {
         public Holerite(Cliente cliente)
-        {                  
-            //CnpjEmpresa = cnpjEmpresa;
-            //NomeEmpresa = nomeEmpresa;
-            //EndereçoEmpresa = endereçoEmpresa;
-            //CargoFuncionario = cargoFuncionario;
-            //Salario = salarioB;                    
+        {                                  
             NomeCliente = cliente.Nome;
             SobrenomeCliente = cliente.Sobrenome;
         }
-
-
 
         public string CnpjEmpresa { get; protected set; }
         private string NomeEmpresa { get; set; }        
@@ -68,6 +61,7 @@ namespace conta_bancaria.Models
             this.EnderecoEmpresa = enderecoEmpresa;
             this.CargoFuncionario = cargoFuncionario;
             this.Salario = salarioBruto;
+
         }
 
 

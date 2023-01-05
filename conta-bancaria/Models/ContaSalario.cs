@@ -20,30 +20,6 @@ namespace conta_bancaria.Models
             this.CnpjEmpresa = holerite.CnpjEmpresa;
         }
 
-        public void AbrirContaSalario()
-        {
-            Console.WriteLine("Para criarmos uma conta salário, precisamos das informações do seu empregador.");
-            Console.WriteLine("Insira o CNPJ da empresa:");
-            string cnpj = Console.ReadLine();
-
-            Console.WriteLine("\nInsira a Razão Social da empresa:");
-            string nomeEmpresa = Console.ReadLine();
-
-            Console.WriteLine("\nInsira o endereço da empresa:");
-            string enderecoEmpresa = Console.ReadLine();
-
-            Console.WriteLine("\nQual seu cargo na empresa:");
-            string cargoFuncionario = Console.ReadLine();
-
-            bool convertSalarioBruto;
-            double salarioBruto;
-            do
-            {
-                Console.WriteLine("\nInsira seu salário bruto:");
-                convertSalarioBruto = double.TryParse(Console.ReadLine(), out salarioBruto);
-            } while (!convertSalarioBruto);
-        }
-
 
         public void Depositar(string cnpj)  
         {

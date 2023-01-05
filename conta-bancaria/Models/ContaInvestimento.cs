@@ -10,8 +10,7 @@ namespace conta_bancaria.Models
 {
     public class ContaInvestimento : Conta
     {
-        private double taxaDeManutencao = 0.08;
-        public int NumeroConta { get; private set; }
+        private double taxaDeManutencao = 0.8;
 
 
         public ContaInvestimento(Cliente cliente) : base(cliente)
@@ -67,34 +66,48 @@ namespace conta_bancaria.Models
             {
                 perfilInvestidor = "AGRESSIVO!";              
             }
+            Console.Clear();
             Console.WriteLine($"Seu perfil é {perfilInvestidor}");
             Console.WriteLine("Pressione enter para continuar...");
             Console.ReadKey();
         }
-
-         
-        public void InvestirEmAcoes(decimal investimentoInicial)
+     
+        public void InvestirEmAcoes(double investimentoInicial)
         {
-            decimal retorno = 0;
+            double retorno = 0;
+            double investimentoFinal = 0;
 
-            if (investimentoInicial > 500)
+            if (investimentoInicial < 500)
             {
-                retorno = investimentoInicial += (investimentoInicial * 10) / 100;
+                retorno = investimentoInicial + investimentoInicial * 10 / 100;
             }
-            else if (investimentoInicial > 1000)
+            else if (investimentoInicial < 1000)
             {
-                retorno = investimentoInicial += (investimentoInicial * 15) / 100;
+                retorno = investimentoInicial + investimentoInicial * 15 / 100;
             }
-            else if (investimentoInicial > 5000)
+            else
             {
-                retorno = investimentoInicial += (investimentoInicial * 20) / 100;
+                retorno = investimentoInicial + investimentoInicial * 20 / 100;
             }
 
-            Console.WriteLine($"Seu investimento inicial será de {investimentoInicial}");
-            Console.WriteLine($"Sua rentabilidade mensal será de {investimentoInicial - retorno}");
+            Console.WriteLine($"Sua valor de deposito é: {investimentoInicial}");
+            Console.WriteLine($"Sua rentabilidade mensal será de {retorno}");
             Console.WriteLine("Pressione enter para continuar...");
             Console.ReadKey();
+            base.Depositar(investimentoInicial);
         }
+
+        public override void Sacar(double valor)
+        {
+            base.Sacar(valor);
+        }
+
+       
+        public void Transferir(double valor)
+        {
+            base.Depositar(valor);
+        }
+
 
         public override double CalcularValorTarifaManutencao()
         {

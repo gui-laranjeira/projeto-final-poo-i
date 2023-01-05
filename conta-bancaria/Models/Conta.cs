@@ -22,7 +22,6 @@ public abstract class Conta
         Saldo = 0;
     }
 
-
     List<double> Movimentacoes = new();
 
     //taxa base, na classe abstrata é zero mas cada classe filha (tipo de conta) tem sua própria taxa
