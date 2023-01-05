@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace conta_bancaria.Models
@@ -15,19 +16,31 @@ namespace conta_bancaria.Models
 
         public void RegistrarCliente()
         {      
-            Console.WriteLine("Complete seu cadastro:\n"); 
+            Console.WriteLine("Complete seu cadastro:\n");
+            bool checkNome;
             do
             {
                 Console.Write("Informe seu nome: ");
                 string nome = Console.ReadLine();
-                Nome = nome;
-            } while (Nome == string.Empty);
+                checkNome = nome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
+                if (checkNome)
+                {
+                    Nome = nome;             
+                }    
+            } while (!checkNome);
+
+            bool checkSobrenome;
             do
             {
                 Console.Write("Informe seu sobrenome: ");
                 string sobrenome = Console.ReadLine();
-                Sobrenome = sobrenome;
-            } while(Sobrenome == string.Empty);
+                checkSobrenome = sobrenome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
+                if (checkSobrenome)
+                {
+                    Sobrenome = sobrenome;
+                }                
+            } while(!checkSobrenome);
+
             do
             {
                 Console.Write("Informe sua idade: ");
@@ -35,12 +48,17 @@ namespace conta_bancaria.Models
                 Idade = idade;       
             } while (Idade < 18 || Idade > 100);
 
+            bool checkCpf;
             do
             {
                 Console.Write("Informe seu CPF: ");
                 string cpf = Console.ReadLine();
-                Cpf = cpf;
-            }while(Cpf == string.Empty);
+                checkCpf = Regex.IsMatch(cpf, @"^([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})+$");
+                if (checkCpf)
+                {
+                    Cpf = cpf;
+                }                    
+            }while(!checkCpf);
 
             Console.Clear();
         }
