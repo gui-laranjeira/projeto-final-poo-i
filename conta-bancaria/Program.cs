@@ -6,7 +6,6 @@ Console.WriteLine("*     Bem vindo ao sistema do Banco Sinqia!     *");
 Console.WriteLine("*                                               *");
 Console.WriteLine("*************************************************\n");
 
-
 Cliente cliente = new Cliente();
 cliente.RegistrarCliente();
 int numeroConta;
