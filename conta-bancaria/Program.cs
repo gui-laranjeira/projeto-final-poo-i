@@ -2,7 +2,7 @@
 
 Console.WriteLine("*************************************************");
 Console.WriteLine("*                                               *");
-Console.WriteLine("*  Bem vindo ao sistema do Banco SinqiaSêniors! *");
+Console.WriteLine("*     Bem vindo ao sistema do Banco Sinqia!     *");
 Console.WriteLine("*                                               *");
 Console.WriteLine("*************************************************\n");
 
@@ -32,8 +32,7 @@ string TipoDeContaParaAbertura()
     switch (inputAberturaConta)
     {
         case 1:
-            tipoConta = "contaSalario";
-            
+            tipoConta = "contaSalario";           
             Holerite holerite = new Holerite(cliente);
             holerite.AbrirHolerite();
             holerite.HoleriteCompleto();
@@ -82,7 +81,6 @@ string TipoDeContaParaAbertura()
             } while (inputUsuario != 9);
 
             break;
-
 
         case 2:
             tipoConta = "contaPoupanca";
@@ -138,6 +136,8 @@ string TipoDeContaParaAbertura()
             decimal investimento;
 
             ContaInvestimento contaI = new ContaInvestimento(cliente);
+
+            contaI.AvaliarPerfilInvestidor();
             numeroConta = contaI.NumeroConta;
             Console.Clear();
 

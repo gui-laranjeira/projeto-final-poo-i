@@ -64,24 +64,24 @@ namespace conta_bancaria.Models
             return tarifa;
         }
 
-        public int MenuOpcoes()
-        {
-            bool verificacao;
-            int inputUsuario;
-            do
-            {
-                Console.WriteLine("\n\nQual operação quer realizar\n");
-                Console.WriteLine("(1) - Transferir para poupança");
-                Console.WriteLine("(2) - Sacar");
-                Console.WriteLine("(3) - Extrato");
-                Console.WriteLine("(4) - Dados cliente");
-                Console.WriteLine("(9) - Finalizar programa");
+        //public int MenuOpcoes()
+        //{
+        //    bool verificacao;
+        //    int inputUsuario;
+        //    do
+        //    {
+        //        Console.WriteLine("\n\nQual operação quer realizar\n");
+        //        Console.WriteLine("(1) - Transferir para poupança");
+        //        Console.WriteLine("(2) - Sacar");
+        //        Console.WriteLine("(3) - Extrato");
+        //        Console.WriteLine("(4) - Dados cliente");
+        //        Console.WriteLine("(9) - Finalizar programa");
 
-                verificacao = int.TryParse(Console.ReadLine(), out inputUsuario);
+        //        verificacao = int.TryParse(Console.ReadLine(), out inputUsuario);
 
-            } while (!verificacao);
-            return inputUsuario;
-        }
+        //    } while (!verificacao);
+        //    return inputUsuario;
+        //}
     }
 
 }

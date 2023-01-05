@@ -16,11 +16,11 @@ namespace conta_bancaria.Models
 
         public ContaInvestimento(Cliente cliente) : base(cliente)
         {
-            AvaliarPerfilInvestidor();
+            
          
         }
 
-        public string AvaliarPerfilInvestidor()
+        public void AvaliarPerfilInvestidor()
         {
             int[] respostas = new int[5];
             string perfilInvestidor;
@@ -32,59 +32,68 @@ namespace conta_bancaria.Models
             {
                 Console.WriteLine("1 - Você gosta de correr riscos? ");
                 check = int.TryParse(Console.ReadLine(), out respostas[0]);
-                Console.WriteLine("3 - Você gosta da ideia 'devagar e sempre'?");
+            } while (!check || respostas[0] != 2 && respostas[0] != 1);
+            do
+            {
+                Console.WriteLine("2 - Você gosta da ideia 'devagar e sempre'?");
                 check = int.TryParse(Console.ReadLine(), out respostas[1]);
-                Console.WriteLine("4 - Você tem experiência com investimentos?");
+            } while (!check || respostas[1] != 2 && respostas[1] != 1);
+            do
+            {
+                Console.WriteLine("3 - Você tem experiência com investimentos?");
                 check = int.TryParse(Console.ReadLine(), out respostas[2]);
-                Console.WriteLine("5 - Pode se dar ao luxo de perder dinheiro?");
+            } while (!check || respostas[2] != 2 && respostas[2] != 1);
+            do
+            {
+                Console.WriteLine("4 - Pode se dar ao luxo de perder dinheiro?");
                 check = int.TryParse(Console.ReadLine(), out respostas[3]);
-            } while (!check);
+            } while (!check || respostas[3] != 2 && respostas[3] != 1);
 
-
+    
             foreach (int resposta in respostas)
             {
-                if (resposta == 2)
+                if (resposta == 1)
                     contador++;
             }
-            if (contador == 3)
+            if (contador < 1)
             {
-                perfilInvestidor = "Você tem um perfil CONSERVADOR!";
+                perfilInvestidor = "CONSERVADOR!";
             }
-            else if (contador == 2)
+            else if (contador < 3)
             {
-                perfilInvestidor = "Você tem um perfil MODERADOR!";              
+                perfilInvestidor = "MODERADOR!";              
             }
             else
             {
-                perfilInvestidor = "Você tem um perfil AGRESSIVO!";              
+                perfilInvestidor = "AGRESSIVO!";              
             }
-            return perfilInvestidor;
-
-            Console.WriteLine("Digite um valor para iniciar o investimento em ações");
-          
+            Console.WriteLine($"Seu perfil é {perfilInvestidor}");
+            Console.WriteLine("Pressione enter para continuar...");
+            Console.ReadKey();
         }
 
-
-        public decimal InvestirEmAcoes(decimal investimentoInicial)
+         
+        public void InvestirEmAcoes(decimal investimentoInicial)
         {
-            decimal retornoDeInvestimento;
+            decimal retorno = 0;
 
             if (investimentoInicial > 500)
             {
-                retornoDeInvestimento = investimentoInicial += (investimentoInicial * 10) / 100;
-                return retornoDeInvestimento;
+                retorno = investimentoInicial += (investimentoInicial * 10) / 100;
             }
             else if (investimentoInicial > 1000)
             {
-                retornoDeInvestimento = investimentoInicial += (investimentoInicial * 15) / 100;
-                return retornoDeInvestimento;
+                retorno = investimentoInicial += (investimentoInicial * 15) / 100;
             }
             else if (investimentoInicial > 5000)
             {
-                retornoDeInvestimento = investimentoInicial += (investimentoInicial * 20) / 100;
-                return retornoDeInvestimento;
+                retorno = investimentoInicial += (investimentoInicial * 20) / 100;
             }
-            return investimentoInicial;
+
+            Console.WriteLine($"Seu investimento inicial será de {investimentoInicial}");
+            Console.WriteLine($"Sua rentabilidade mensal será de {retorno}");
+            Console.WriteLine("Pressione enter para continuar...");
+            Console.ReadKey();
         }
 
         public override double CalcularValorTarifaManutencao()
