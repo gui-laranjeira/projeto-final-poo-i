@@ -91,7 +91,7 @@ namespace conta_bancaria.Models
             }
 
             Console.WriteLine($"Seu investimento inicial será de {investimentoInicial}");
-            Console.WriteLine($"Sua rentabilidade mensal será de {retorno}");
+            Console.WriteLine($"Sua rentabilidade mensal será de {investimentoInicial - retorno}");
             Console.WriteLine("Pressione enter para continuar...");
             Console.ReadKey();
         }
