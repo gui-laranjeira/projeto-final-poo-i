@@ -26,7 +26,7 @@ namespace conta_bancaria.Models
         {
             Console.WriteLine("Para concluir o Deposito, digite os 3 primeiros digitos do CNPJ da Empresa");
             string senhaCNPJ = Console.ReadLine();
-            if (Holerite.CnpjEmpresa.StartsWith(senhaCNPJ))
+            if (Holerite.CnpjEmpresa.StartsWith(senhaCNPJ) && senhaCNPJ.Length == 3)
             {
                 Console.WriteLine($"Salário depositado com sucesso: R${Holerite.Salario.ToString("0.00")}");
                 base.Depositar(Holerite.Salario);

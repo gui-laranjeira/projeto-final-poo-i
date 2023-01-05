@@ -41,7 +41,7 @@ namespace conta_bancaria.Models
         {
             Console.WriteLine("Para concluir o Saque, digite os 3 primeiros digitos do seu CPF");
             string senhaCPF = Console.ReadLine();
-            if (Cliente.Cpf.StartsWith(senhaCPF))
+            if (Cliente.Cpf.StartsWith(senhaCPF) && senhaCPF.Length == 3)
             {
                 base.Sacar(valor, taxaDeSaque);
             }
