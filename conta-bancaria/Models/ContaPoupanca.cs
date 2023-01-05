@@ -10,7 +10,7 @@ namespace conta_bancaria.Models
    public class ContaPoupanca : Conta
    {
         //Propriedades:
-        private double taxaDeSaque { get; set; } = 0.35;
+        public double taxaDeSaque { get; } = 0.35;
 
         //Construtor: obrigará o deposito antes da abertura da conta
         public ContaPoupanca(Cliente cliente) : base(cliente)
@@ -37,9 +37,9 @@ namespace conta_bancaria.Models
         }
 
         // por ser poupança, neste método, apenas caso o cliente seja maior de 18 anos ele irá funcionar
-        public override void Sacar(double valor)
+        public override void Sacar(double valor, double taxaDeSaque)
         {
-            base.Sacar(valor);
+            base.Sacar(valor,taxaDeSaque);
         }
 
         // Método especifico de transferência herdará as mesmas características do depósito
@@ -49,12 +49,7 @@ namespace conta_bancaria.Models
         }
 
 
-        //Método da tarifa específica (preciso verificar se o valor da taxa está correto)
-        public override double CalcularValorTarifaManutencao()
-        {
-            double tarifa = this.taxaDeSaque * (Saldo / 100);
-            return tarifa;
-        }
+
     }
 
 }

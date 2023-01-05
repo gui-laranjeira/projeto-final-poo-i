@@ -36,12 +36,12 @@ public abstract class Conta
         Console.WriteLine($"Dinheiro em conta: {Saldo.ToString("0.00")}");
     }
 
-    public virtual void Sacar(double valor)
+    public virtual void Sacar(double valor, double taxaDeSaque)
     {
         if (Saldo >= valor)
         {
+            double taxa = taxaDeSaque * (valor / 100);
             valor *= (-1);
-            double taxa = CalcularValorTarifaManutencao();
             Saldo += valor;
             Saldo -= taxa;
             Movimentacoes.Add(valor);
@@ -61,7 +61,7 @@ public abstract class Conta
         Console.WriteLine("Extrato: \n");
         foreach (var item in Movimentacoes)
         {
-            Console.WriteLine("R$" + item.ToString("0.00"));
+            Console.WriteLine("R$ " + item.ToString("0.00"));
         }
         Console.WriteLine($"\nSaldo total: R$ {Saldo.ToString("0.00")}");
         if (Saldo < 0)
@@ -69,13 +69,6 @@ public abstract class Conta
             Console.WriteLine($"\nValor a ser batido no próximo depósito por conta da taxa de manutenção: R$ {Saldo.ToString("0.00")}");
         }
     }
-
-    public virtual double CalcularValorTarifaManutencao()
-    {
-        double tarifa = taxaDeSaque * (Saldo / 100);
-        return tarifa;
-    }
-
     public int GerarNumeroConta()
     {
         Random r1 = new Random();

@@ -10,7 +10,7 @@ namespace conta_bancaria.Models
 {
     public class ContaInvestimento : Conta
     {
-        private double taxaDeManutencao = 0.8;
+        public double taxaDeManutencao { get;} = 0.8;
 
 
         public ContaInvestimento(Cliente cliente) : base(cliente)
@@ -97,9 +97,9 @@ namespace conta_bancaria.Models
             base.Depositar(investimentoInicial);
         }
 
-        public override void Sacar(double valor)
+        public override void Sacar(double valor, double taxaDeSaque)
         {
-            base.Sacar(valor);
+            base.Sacar(valor, taxaDeSaque);
         }
 
        
@@ -107,13 +107,5 @@ namespace conta_bancaria.Models
         {
             base.Depositar(valor);
         }
-
-
-        public override double CalcularValorTarifaManutencao()
-        {
-            double tarifa = this.taxaDeManutencao * (Saldo / 100);
-            return tarifa;
-        }
     }
-
 }

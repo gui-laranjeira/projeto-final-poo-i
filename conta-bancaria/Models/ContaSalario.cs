@@ -8,7 +8,7 @@ namespace conta_bancaria.Models
 {
     internal class ContaSalario : Conta
     {
-        private double taxaDeSaque { get; set; } = 0.3;
+        public double taxaDeSaque { get; } = 0.3;
         public TipoConta contaSalario { get; protected set; }
         public string CnpjEmpresa { get; protected set; }
         public Holerite Holerite { get; protected set; }
@@ -31,13 +31,6 @@ namespace conta_bancaria.Models
             {
                 Console.WriteLine("CNPJ inserido não corresponde ao cnpj da empresa cadastrada");
             }                   
-        }
-
-        public override double CalcularValorTarifaManutencao()
-        {
-                    
-            double tarifa = this.taxaDeSaque * (Saldo / 100);
-            return tarifa;
         }
     }
 }

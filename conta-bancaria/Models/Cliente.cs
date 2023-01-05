@@ -65,11 +65,11 @@ namespace conta_bancaria.Models
 
         public void VisualizarDados()
         {
-            Console.WriteLine("************************************");
+            Console.WriteLine("******************************************");
             Console.WriteLine($"Nome do cliente:\t{Nome} {Sobrenome}.");
-            Console.WriteLine($"Idade:\t {Idade}.");
-            Console.WriteLine($"Cpf:\t {Cpf}.");
-            Console.WriteLine("************************************");
+            Console.WriteLine($"Idade:\t{Idade}.");
+            Console.WriteLine($"Cpf:\t{Cpf}.");
+            Console.WriteLine("******************************************");
         }
 
     }

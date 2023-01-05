@@ -58,7 +58,9 @@ string TipoDeContaParaAbertura()
                         Console.Clear();
                         Console.WriteLine("\nInsira o valor que quer sacar:");
                         double.TryParse(Console.ReadLine(), out double valorSaque);
-                        contaS.Sacar(valorSaque);
+                        if (valorSaque < 0)
+                            valorSaque *= -1;
+                        contaS.Sacar(valorSaque,contaS.taxaDeSaque);
                         Console.WriteLine("\nPressione ENTER para continuar!");
                         Console.ReadKey();
                         break;
@@ -99,6 +101,8 @@ string TipoDeContaParaAbertura()
                         Console.Clear();
                         Console.WriteLine("Digite o valor que deseja transferir:");
                         double valorTransf = double.Parse(Console.ReadLine());
+                        if (valorTransf < 0)
+                            valorTransf *= -1;
                         contaP.TransferirParaPoupanca(valorTransf);
                         Console.WriteLine("\nPressione ENTER para continuar!");
                         Console.ReadKey();
@@ -107,7 +111,9 @@ string TipoDeContaParaAbertura()
                         Console.Clear();
                         Console.WriteLine("Digite o valor que deseja sacar: ");
                         double valorSaq = double.Parse(Console.ReadLine());
-                        contaP.Sacar(valorSaq);
+                        if (valorSaq < 0)
+                            valorSaq *= -1;
+                        contaP.Sacar(valorSaq,contaP.taxaDeSaque);
                         Console.WriteLine("\nPressione ENTER para continuar!");
                         Console.ReadKey();
                         break;
@@ -152,6 +158,8 @@ string TipoDeContaParaAbertura()
                         Console.Clear();
                         Console.WriteLine("Digite o valor que deseja transferir:");
                         double valorTransf = double.Parse(Console.ReadLine());
+                        if (valorTransf < 0)
+                            valorTransf *= -1;
                         contaI.Transferir(valorTransf);
                         Console.WriteLine("\nPressione ENTER para continuar!");
                         Console.ReadKey();
@@ -160,7 +168,9 @@ string TipoDeContaParaAbertura()
                         Console.Clear();
                         Console.WriteLine("Digite o valor que deseja sacar: ");
                         double valorSaq = double.Parse(Console.ReadLine());
-                        contaI.Sacar(valorSaq);
+                        if (valorSaq < 0)
+                            valorSaq *= -1;
+                        contaI.Sacar(valorSaq,contaI.taxaDeManutencao);
                         Console.WriteLine("\nPressione ENTER para continuar!");
                         Console.ReadKey();
                         break;
@@ -187,7 +197,8 @@ int MenuDeOperacoes()
     bool convert;
     do
     {
-        Console.WriteLine($"\nCliente: {cliente.Nome} - \t Número da Conta: {numeroConta}\n");
+        Console.Clear();
+        Console.WriteLine($"\nCliente: {cliente.Nome}  \t Número da Conta: {numeroConta}\n");
         Console.WriteLine("\nQual operação quer realizar?\n");
         Console.WriteLine("(1) - Depositar/Transferência:");
         Console.WriteLine("(2) - Sacar");

@@ -53,40 +53,44 @@ namespace conta_bancaria.Models
             double salarioBruto;
             do
             {
-                Console.WriteLine("\nInsira seu salário bruto:");
+                Console.WriteLine("\nInsira seu salário :");
                 convertSalarioBruto = double.TryParse(Console.ReadLine(), out salarioBruto);
             } while (!convertSalarioBruto);
-            
+            if (salarioBruto < 0)
+                this.Salario = - salarioBruto;
+            else
+                this.Salario = salarioBruto;
             this.NomeEmpresa = nomeEmpresa;
             this.EnderecoEmpresa = enderecoEmpresa;
             this.CargoFuncionario = cargoFuncionario;
-            this.Salario = salarioBruto;
+           
 
         }
 
 
         public void HoleriteCompleto()
         {
+            Console.Clear();
         Console.WriteLine(@$" 
 
         HOLERITE
 
-        ____________________________________________________________________________________________________________
-        EMPREGADOR                                                                    RECIBO DE PAGAMENTO DE SALÁRIO
+        __________________________________________________________________________________________________
+        EMPREGADOR                                                          RECIBO DE PAGAMENTO DE SALÁRIO
         {NomeEmpresa.ToUpper()}   
 
         ENDEREÇO: {EnderecoEmpresa.ToUpper()}           CNPJ: {CnpjEmpresa}
         
-        ____________________________________________________________________________________________________________
+        __________________________________________________________________________________________________
         FUNCIONÁRIO: {NomeCliente.ToUpper()} {SobrenomeCliente.ToUpper()}       FUNÇÃO: {CargoFuncionario.ToUpper()}
         
         
-        ____________________________________________________________________________________________________________
-        SALÁRIO                                                                    {Salario.ToString("0.00")} R$              
+        __________________________________________________________________________________________________
+        SALÁRIO                                                                {Salario.ToString("0.00")} R$              
                
-        ____________________________________________________________________________________________________________
+        __________________________________________________________________________________________________
         ");
-            Console.WriteLine("Pressione enter para seguir");
+            Console.WriteLine("\n\nPressione ENTER para seguir");
             Console.ReadKey();
         }
     }
