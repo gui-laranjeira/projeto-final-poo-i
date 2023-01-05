@@ -15,53 +15,18 @@ namespace conta_bancaria.Models
         //Construtor: obrigará o deposito antes da abertura da conta
         public ContaPoupanca(Cliente cliente) : base(cliente)
         {
-            depositoInicial();
+                        
         }
+
+        //public void AbrirContaPoupanca()
+        //{
+        //    DepositoInicial();
+        //}
+
+   
+
 
         public void AbrirContaPoupanca()
-        {
-            int inputUsuario = MenuDeOperacoes();
-
-            switch (inputUsuario)
-            {
-                case 1:
-                    Console.Clear();
-                    Console.WriteLine("Digite o valor que deseja transferir:");
-                    double valorTransf = double.Parse(Console.ReadLine());
-                    contaP.TransferirParaPoupanca(valorTransf);
-                    Console.WriteLine("\nPressione ENTER para continuar!");
-                    Console.ReadKey();
-                    break;
-                case 2:
-                    Console.Clear();
-                    Console.WriteLine("Digite o valor que deseja sacar: ");
-                    double valorSaq = double.Parse(Console.ReadLine());
-                    contaP.Sacar(valorSaq);
-                    Console.WriteLine("\nPressione ENTER para continuar!");
-                    Console.ReadKey();
-                    break;
-                case 3:
-                    Console.Clear();
-                    contaP.Extrato();
-                    Console.WriteLine("\nPressione ENTER para continuar!");
-                    Console.ReadKey();
-                    break;
-                case 4:
-                    Console.Clear();
-                    cliente.VisualizarDados();
-                    Console.WriteLine("\nPressione ENTER para continuar!");
-                    Console.ReadKey();
-                    break;
-                case 9:
-                    break;
-            }
-
-        }
-
-
-
-        // Método privado pois ele será acessado somente na instanciação de um novo cliente
-        private void depositoInicial()
         {
             Saldo = 0;
             bool deposito;

@@ -45,7 +45,7 @@ namespace conta_bancaria.Models
         }
 
 
-        public void Depositar(string cnpj)
+        public void Depositar(string cnpj)  
         {
             if (Holerite.CnpjEmpresa == cnpj)
             {

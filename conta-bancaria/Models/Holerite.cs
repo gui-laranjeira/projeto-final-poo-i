@@ -82,6 +82,8 @@ namespace conta_bancaria.Models
                
         ____________________________________________________________________________________________________________
         ");
+            Console.WriteLine("Pressione enter para seguir");
+            Console.ReadKey();
         }
     }
 }

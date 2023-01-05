@@ -37,8 +37,9 @@ string TipoDeContaParaAbertura()
             Holerite holerite = new Holerite(cliente);
             holerite.AbrirHolerite();
             holerite.HoleriteCompleto();
+
             ContaSalario contaS = new ContaSalario(cliente, holerite);
-            numeroConta = contaS.GerarNumeroConta();
+            numeroConta = contaS.NumeroConta;
 
             Console.Clear();
 
@@ -81,16 +82,55 @@ string TipoDeContaParaAbertura()
             } while (inputUsuario != 9);
 
             break;
+
+
         case 2:
             tipoConta = "contaPoupanca";
 
             ContaPoupanca contaP = new ContaPoupanca(cliente);
-            numeroConta = contaP.GerarNumeroConta();
+            numeroConta = contaP.NumeroConta;
+            contaP.AbrirContaPoupanca();
             Console.Clear();
 
-            Console.WriteLine("Conta Poupança aberta com sucesso!");
+            Console.WriteLine("Conta Poupança aberta com sucesso!\n");
 
+            do
+            {
+                inputUsuario = MenuDeOperacoes();
+                switch (inputUsuario)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Digite o valor que deseja transferir:");
+                        double valorTransf = double.Parse(Console.ReadLine());
+                        contaP.TransferirParaPoupanca(valorTransf);
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Digite o valor que deseja sacar: ");
+                        double valorSaq = double.Parse(Console.ReadLine());
+                        contaP.Sacar(valorSaq);
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        contaP.Extrato();
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        cliente.VisualizarDados();
+                        Console.WriteLine("\nPressione ENTER para continuar!");
+                        Console.ReadKey();
+                        break;     
+                }
+            }while (inputUsuario != 9);
             break;
+
         case 3:
             tipoConta = "contaInvestimento";
 
@@ -98,7 +138,7 @@ string TipoDeContaParaAbertura()
             decimal investimento;
 
             ContaInvestimento contaI = new ContaInvestimento(cliente);
-            numeroConta = contaI.GerarNumeroConta();
+            numeroConta = contaI.NumeroConta;
             Console.Clear();
 
             Console.WriteLine("Para finalizar sua conta, digite quanto você deseja investir: ");
@@ -115,9 +155,9 @@ int MenuDeOperacoes()
     bool convert;
     do
     {
-        Console.WriteLine($"\nCliente: {cliente.Nome} - Número da Conta: {numeroConta}\n");
+        Console.WriteLine($"\nCliente: {cliente.Nome} - \t Número da Conta: {numeroConta}\n");
         Console.WriteLine("\nQual operação quer realizar?\n");
-        Console.WriteLine("(1) - Depositar/Transferência");
+        Console.WriteLine("(1) - Depositar/Transferência:");
         Console.WriteLine("(2) - Sacar");
         Console.WriteLine("(3) - Emitir extrato");
         Console.WriteLine("(4) - Exibir dados do cliente");
