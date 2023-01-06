@@ -2,92 +2,82 @@
 
 internal class Program
 {
-     static void Main(string[] args)
-     {
-            Menu.MensagemBoasVindas();
+    static void Main(string[] args)
+    {
+        Menu.MensagemBoasVindas();
 
-            Cliente cliente = new Cliente();
-            cliente.RegistrarCliente();
-            int numeroConta;
-            string tipoConta = TipoDeContaParaAbertura();
+        Cliente cliente = new Cliente();
+        cliente.RegistrarCliente();
+        int numeroConta;
 
-            string TipoDeContaParaAbertura()
-            {
-                int inputAberturaConta = Menu.MostrarTipoDeConta();
-                string tipoConta = "";
+        string inputTipoConta = Menu.TipoDeConta();
+        switch (inputTipoConta)
+        {
+            case "Conta Salário":
 
-                switch (inputAberturaConta)
+                Holerite holerite = new Holerite(cliente);
+                holerite.AbrirHolerite();
+                holerite.HoleriteCompleto();
+
+                ContaSalario contaS = new ContaSalario(cliente, holerite);
+                numeroConta = contaS.NumeroConta;
+
+                Console.Clear();
+
+                Console.WriteLine("Conta Salário aberta com sucesso!");
+                int inputUsuario;
+                do
                 {
-                    case 1:
-                        tipoConta = "contaSalario";
-                        Holerite holerite = new Holerite(cliente);
-                        holerite.AbrirHolerite();
-                        holerite.HoleriteCompleto();
+                    Console.Clear();
+                    inputUsuario = Menu.MostrarOperacoes(cliente.Nome, inputTipoConta, numeroConta, "Receber salário", "Sacar");
+                    contaS.OperacoesSalario(inputUsuario);
 
-                        ContaSalario contaS = new ContaSalario(cliente, holerite);
-                        numeroConta = contaS.NumeroConta;
+                } while (inputUsuario != 9);
 
-                        Console.Clear();
+                break;
 
-                        Console.WriteLine("Conta Salário aberta com sucesso!");
-                        int inputUsuario;
-                        do
-                        {
-                            Console.Clear();
-                            Console.WriteLine($"\nCliente: {cliente.Nome}  \t Número da Conta: {numeroConta}\n");
-                            inputUsuario = Menu.MostrarOperacoes();
-                            contaS.OperacoesSalario(inputUsuario);
+            case "Conta Poupança":
 
-                        } while (inputUsuario != 9);
+                ContaPoupanca contaP = new ContaPoupanca(cliente);
+                numeroConta = contaP.NumeroConta;
+                contaP.AbrirContaPoupanca();
+                Console.Clear();
 
-                        break;
+                Console.WriteLine("Conta Poupança aberta com sucesso!\n");
 
-                    case 2:
-                        tipoConta = "contaPoupanca";
+                do
+                {
+                    inputUsuario = Menu.MostrarOperacoes(cliente.Nome, inputTipoConta, numeroConta, "Transferir para poupança", "Sacar");
+                    contaP.OperacoesPoupanca(inputUsuario);
 
-                        ContaPoupanca contaP = new ContaPoupanca(cliente);
-                        numeroConta = contaP.NumeroConta;
-                        contaP.AbrirContaPoupanca();
-                        Console.Clear();
+                } while (inputUsuario != 9);
+                break;
 
-                        Console.WriteLine("Conta Poupança aberta com sucesso!\n");
+            case "Conta Investimento":
 
-                        do
-                        {
-                            Console.WriteLine($"\nCliente: {cliente.Nome}  \t Número da Conta: {numeroConta}\n");
-                            inputUsuario = Menu.MostrarOperacoes(); 
-                            contaP.OperacoesPoupanca(inputUsuario);
+                bool check;
+                double investimento;
 
-                        } while (inputUsuario != 9);
-                        break;
+                ContaInvestimento contaI = new ContaInvestimento(cliente);
 
-                    case 3:
-                        tipoConta = "contaInvestimento";
-
-                        bool check;
-                        double investimento;
-
-                        ContaInvestimento contaI = new ContaInvestimento(cliente);
-
-                        contaI.AvaliarPerfilInvestidor();
-                        numeroConta = contaI.NumeroConta;
-                        Console.Clear();
-
-                        Console.WriteLine("Para finalizar sua conta, digite quanto você deseja investir: ");
-                        check = double.TryParse(Console.ReadLine(), out investimento);
-                        contaI.InvestirEmAcoes(investimento);
-
-                        do
-                        {
-                            Console.WriteLine($"\nCliente: {cliente.Nome}  \t Número da Conta: {numeroConta}\n");
-                            inputUsuario = Menu.MostrarOperacoes();
-                            contaI.OperacoesInvestimento(inputUsuario);
+                contaI.AvaliarPerfilInvestidor();
+                numeroConta = contaI.NumeroConta;
+                Console.Clear();
+                do
+                {
+                    Console.WriteLine("Para finalizar, digite quanto você deseja investir em conta : ");
+                    check = double.TryParse(Console.ReadLine(), out investimento);
+                } while (!check);
+                contaI.InvestirEmAcoes(investimento);
+                do
+                {
+                    
+                    inputUsuario = Menu.MostrarOperacoes(cliente.Nome, inputTipoConta, numeroConta, "Investir na conta" , "Investir em ações");
+                    contaI.OperacoesInvestimento(inputUsuario);
 
 
-                        } while (inputUsuario != 9);
-                        break;
-                }
-                return tipoConta;
-            } 
-     }
+                } while (inputUsuario != 9);
+                break;
+        }
+    }
 }

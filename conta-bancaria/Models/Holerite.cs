@@ -15,13 +15,13 @@ namespace conta_bancaria.Models
             SobrenomeCliente = cliente.Sobrenome;
         }
 
-        public string CnpjEmpresa { get; protected set; }
+        public string CnpjEmpresa { get; private set; }
         private string NomeEmpresa { get; set; }        
         private string EnderecoEmpresa { get; set; }
         private string CargoFuncionario { get; set; }
         public double Salario { get; protected set; }               
-        public string NomeCliente { get; set; }
-        public string SobrenomeCliente { get; set; }
+        public string NomeCliente { get; private set; }
+        public string SobrenomeCliente { get; private set; }
        
 
         public void AbrirHolerite()

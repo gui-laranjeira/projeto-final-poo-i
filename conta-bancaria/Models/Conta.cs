@@ -8,9 +8,7 @@ namespace conta_bancaria.Models;
 
 public abstract class Conta
 {
-    //enum para definir tipo de conta, é definido pela classe filha
-    public TipoConta TipoDeConta { get; protected set; }
-    public int NumeroConta { get; set; }
+    public int NumeroConta { get; private set; }
     protected double Saldo { get; set; }
     public Cliente Cliente { get; set; }
 
@@ -23,9 +21,6 @@ public abstract class Conta
     }
 
     List<double> Movimentacoes = new();
-
-    //taxa base, na classe abstrata é zero mas cada classe filha (tipo de conta) tem sua própria taxa
-    double taxaDeSaque = 0;
 
 
     //esse método tem q ser protected pra não ser possivel instanciar uma contaSalario sem inserir o CNPJ
@@ -46,12 +41,12 @@ public abstract class Conta
             Saldo -= taxa;
             Movimentacoes.Add(valor);
             Movimentacoes.Add(taxa * (-1));
-            Console.WriteLine("Saque realizado com sucesso!");
+            Console.WriteLine("Operação realizada com sucesso!");
             Console.WriteLine($"Dinheiro em conta: {Saldo.ToString("0.00")}");
         }
         else
         {
-            Console.WriteLine("Não há saldo suficiente em conta!");
+            Console.WriteLine("Não há dinheiro em conta suficiente !");
         }
 
     }
@@ -63,7 +58,7 @@ public abstract class Conta
         {
             Console.WriteLine("R$ " + item.ToString("0.00"));
         }
-        Console.WriteLine($"\nSaldo total: R$ {Saldo.ToString("0.00")}");
+        Console.WriteLine($"\nDinheiro em conta total: R$ {Saldo.ToString("0.00")}");
         if (Saldo < 0)
         {
             Console.WriteLine($"\nValor a ser batido no próximo depósito por conta da taxa de manutenção: R$ {Saldo.ToString("0.00")}");

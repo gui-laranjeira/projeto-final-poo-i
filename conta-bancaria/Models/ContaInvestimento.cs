@@ -60,14 +60,15 @@ namespace conta_bancaria.Models
             }
             else if (contador < 3)
             {
-                perfilInvestidor = "MODERADOR!";              
+                perfilInvestidor = "MODERADO!";              
             }
             else
             {
                 perfilInvestidor = "AGRESSIVO!";              
             }
             Console.Clear();
-            Console.WriteLine($"Seu perfil é {perfilInvestidor}");
+            Console.WriteLine($"Seu perfil é {perfilInvestidor}\n");
+            Console.WriteLine("Conta Investimento aberta com sucesso!\n");
             Console.WriteLine("\nPressione ENTER para continuar...");
             Console.ReadKey();
         }
@@ -89,51 +90,51 @@ namespace conta_bancaria.Models
                 retorno = investimentoInicial + investimentoInicial * 20 / 100;
             }
 
-            Console.WriteLine($"\nSua valor de deposito é: R${investimentoInicial.ToString("0.00")}");
+            Console.WriteLine($"\nSeu valor inicial de investimento em conta é: R${investimentoInicial.ToString("0.00")}");
             Console.WriteLine($"No final do mês seu dinheiro renderá para: R${retorno.ToString("0.00")}");
             Console.WriteLine("\nPressione ENTER para continuar...");
             Console.ReadKey();
             base.Depositar(investimentoInicial);
         }
 
-        public override void Sacar(double valor, double taxaDeSaque)
-        {
-            base.Sacar(valor, taxaDeSaque);
-        }
-
-       
-        public void Transferir(double valor)
-        {
-            base.Depositar(valor);
-        }
-
          public void OperacoesInvestimento(int inputUsuario)
         {
+            bool check;
             switch (inputUsuario)
             {
                 case 1:
                     Console.Clear();
-                    Console.WriteLine("Digite o valor que deseja depositar:");
-                    double valorTransf = double.Parse(Console.ReadLine());
+                    double valorTransf;
+                    do
+                    {
+                        Console.WriteLine("Digite o valor que deseja investir em conta:");
+                        check = double.TryParse(Console.ReadLine(), out valorTransf);
+                    } while (!check);
                     if (valorTransf < 0)
                         valorTransf *= -1;
-                    Transferir(valorTransf);
+                    Depositar(valorTransf);
                     Console.WriteLine("\nPressione ENTER para continuar!");
                     Console.ReadKey();
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("Digite o valor que deseja sacar: ");
-                    double valorSaq = double.Parse(Console.ReadLine());
-                    if (valorSaq < 0)
-                        valorSaq *= -1;
-                    Sacar(valorSaq, taxaDeManutencao);
+                    double valorSaque;
+
+                    do
+                    {
+                        Console.WriteLine("Digite o valor que deseja investir em ações:");
+                        check = double.TryParse(Console.ReadLine(), out valorSaque);
+                    } while (!check);
+                    if (valorSaque < 0)
+                        valorSaque *= -1;
+                    Sacar(valorSaque, taxaDeManutencao);
                     Console.WriteLine("\nPressione ENTER para continuar!");
                     Console.ReadKey();
                     break;
                 case 3:
                     Console.Clear();
                     Extrato();
+                    Console.WriteLine("Valores positivos investidos em conta\nValores negativos investidos em ações e taxas de manutenção");
                     Console.WriteLine("\nPressione ENTER para continuar!");
                     Console.ReadKey();
                     break;

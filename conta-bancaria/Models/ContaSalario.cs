@@ -10,14 +10,12 @@ namespace conta_bancaria.Models
     internal class ContaSalario : Conta
     {
         public double taxaDeSaque { get; } = 0.3;
-        public TipoConta contaSalario { get; protected set; }
         public string CnpjEmpresa { get; protected set; }
         public Holerite Holerite { get; protected set; }
 
         public ContaSalario(Cliente cliente, Holerite holerite) : base(cliente)
         {
             this.Holerite = holerite;
-            this.TipoDeConta = contaSalario;
             this.CnpjEmpresa = holerite.CnpjEmpresa;
         }
 
@@ -39,8 +37,9 @@ namespace conta_bancaria.Models
 
          public void OperacoesSalario(int inputUsuario)
         {
+            bool check;
             switch (inputUsuario)
-            {
+            {   
                 case 1:
                     Console.Clear();
                     Depositar(CnpjEmpresa);
@@ -49,8 +48,12 @@ namespace conta_bancaria.Models
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("\nInsira o valor que quer sacar:");
-                    double.TryParse(Console.ReadLine(), out double valorSaque);
+                    double valorSaque;
+                    do
+                    {
+                        Console.WriteLine("\nInsira o valor que quer sacar:");
+                        check = double.TryParse(Console.ReadLine(), out valorSaque);
+                    } while (!check);
                     if (valorSaque < 0)
                         valorSaque *= -1;
                     Sacar(valorSaque, taxaDeSaque);
@@ -60,6 +63,7 @@ namespace conta_bancaria.Models
                 case 3:
                     Console.Clear();
                     Extrato();
+                    Console.WriteLine("Valores positivos para depósito\nValores negativos para saque e taxas de manutenção");
                     Console.WriteLine("\nPressione ENTER para continuar!");
                     Console.ReadKey();
                     break;

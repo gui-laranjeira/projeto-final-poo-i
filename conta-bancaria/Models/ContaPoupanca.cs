@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,21 +37,7 @@ namespace conta_bancaria.Models
             base.Depositar(depositoMinimo);
         }
 
-        // por ser poupança, neste método, apenas caso o cliente seja maior de 18 anos ele irá funcionar
-        public override void Sacar(double valor, double taxaDeSaque)
-        {
-            Console.WriteLine("Para concluir o Saque, digite os 3 primeiros digitos do seu CPF");
-            string senhaCPF = Console.ReadLine();
-            if (Cliente.Cpf.StartsWith(senhaCPF) && senhaCPF.Length == 3)
-            {
-                base.Sacar(valor, taxaDeSaque);
-            }
-            else
-            {
-                Console.WriteLine("Senha inválida");
-            }
-        }
-
+      
         // Método especifico de transferência herdará as mesmas características do depósito
         public void TransferirParaPoupanca(double valor)
         {
@@ -59,12 +46,17 @@ namespace conta_bancaria.Models
 
           public void OperacoesPoupanca(int inputUsuario)
         {
+            bool check;
             switch (inputUsuario)
             {
                 case 1:
                     Console.Clear();
-                    Console.WriteLine("Digite o valor que deseja transferir para poupança:");
-                    double valorTransf = double.Parse(Console.ReadLine());
+                    double valorTransf;
+                    do
+                    {
+                        Console.WriteLine("Digite o valor que deseja transferir para poupança:");
+                        check = double.TryParse(Console.ReadLine(), out valorTransf);
+                    } while (!check);
                     if (valorTransf < 0)
                         valorTransf *= -1;
                     TransferirParaPoupanca(valorTransf);
@@ -73,17 +65,32 @@ namespace conta_bancaria.Models
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("Digite o valor que deseja sacar: ");
-                    double valorSaq = double.Parse(Console.ReadLine());
-                    if (valorSaq < 0)
-                        valorSaq *= -1;
-                    Sacar(valorSaq, taxaDeSaque);
+                    Console.WriteLine("Para concluir o Saque, digite os 3 primeiros digitos do seu CPF");
+                    string senhaCPF = Console.ReadLine();
+                    if (Cliente.Cpf.StartsWith(senhaCPF) && senhaCPF.Length == 3)
+                    {
+                        double valorSaque;
+                        do
+                        {
+                            Console.WriteLine("Digite o valor que deseja sacar: ");
+                            check = double.TryParse(Console.ReadLine(), out valorSaque);
+                        } while (!check);
+                        if (valorSaque < 0)
+                            valorSaque *= -1;
+                        Sacar(valorSaque, taxaDeSaque);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Senha inválida");
+                    }
+                    
                     Console.WriteLine("\nPressione ENTER para continuar!");
                     Console.ReadKey();
                     break;
                 case 3:
                     Console.Clear();
                     Extrato();
+                    Console.WriteLine("Valores positivos para depósito\nValores negativos para saque e taxas de manutenção");
                     Console.WriteLine("\nPressione ENTER para continuar!");
                     Console.ReadKey();
                     break;
