@@ -17,29 +17,39 @@ namespace conta_bancaria.Models
         public void RegistrarCliente()
         {      
             Console.WriteLine("Complete seu cadastro:\n");
-            bool checkNome;
+            bool checkNome = false;
+
             do
             {
                 Console.Write("Informe seu nome: ");
                 string nome = Console.ReadLine();
-                checkNome = nome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
-                if (checkNome)
+
+                if (!String.IsNullOrEmpty(nome))
                 {
-                    Nome = nome;
-                    break;
-                }    
+                    checkNome = nome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
+                    if (checkNome)
+                        Nome = nome;
+                }
+                else
+                    Console.WriteLine("Insira um nome válido.");
+
             } while (!checkNome);
 
-            bool checkSobrenome;
+            bool checkSobrenome = false;
             do
             {
                 Console.Write("Informe seu sobrenome: ");
                 string sobrenome = Console.ReadLine();
-                checkSobrenome = sobrenome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
-                if (checkSobrenome)
+
+                if (!String.IsNullOrEmpty(sobrenome))
                 {
-                    Sobrenome = sobrenome;
-                }                
+                    checkSobrenome = sobrenome.ToLower().All(c => Char.IsLetter(c) || c == ' ');
+                    if (checkSobrenome)
+                        Sobrenome = sobrenome;
+                }
+                else
+                    Console.WriteLine("Insira um sobrenome válido.");
+
             } while(!checkSobrenome);
 
             do
@@ -65,12 +75,14 @@ namespace conta_bancaria.Models
             {
                 Console.Write("Informe seu CPF (apenas números): ");
                 string cpf = Console.ReadLine();
-                if (long.TryParse(cpf, out long teste))
+                if (long.TryParse(cpf, out long teste) && cpf.Length == 11)
                 {
                     Cpf = cpf;
                 }
+                else
+                    Console.WriteLine("O CPF deve conter somente números e deve ter 11 dígitos. Tente novamente.");
 
-            } while (String.IsNullOrEmpty(Cpf)); 
+            } while (String.IsNullOrEmpty(Cpf));
 
             Console.Clear();
         }
@@ -78,9 +90,9 @@ namespace conta_bancaria.Models
         public void VisualizarDados()
         {
             Console.WriteLine("******************************************");
-            Console.WriteLine($"Nome do cliente: \t {Nome} {Sobrenome}.");
-            Console.WriteLine($"Idade: \t {Idade}.");
-            Console.WriteLine($"Cpf: \t {Cpf}.");
+            Console.WriteLine($"Nome do cliente: \t {Nome} {Sobrenome}");
+            Console.WriteLine($"Idade: \t {Idade}");
+            Console.WriteLine($"Cpf: \t {Cpf}");
             Console.WriteLine("******************************************");
         }
 

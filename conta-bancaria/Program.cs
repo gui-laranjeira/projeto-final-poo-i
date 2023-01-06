@@ -33,6 +33,7 @@ internal class Program
                         int inputUsuario;
                         do
                         {
+                            Console.Clear();
                             Console.WriteLine($"\nCliente: {cliente.Nome}  \t Número da Conta: {numeroConta}\n");
                             inputUsuario = Menu.MostrarOperacoes();
                             contaS.OperacoesSalario(inputUsuario);
