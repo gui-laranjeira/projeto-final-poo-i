@@ -50,11 +50,14 @@ namespace conta_bancaria.Models
                 {
                     Console.WriteLine("Você precisa ser maior de idade para abrir uma conta no nosso banco!");
                 }
-                else
+                else if(idade > 100)
                 {
+                    Console.WriteLine("Você precisa ter menos de 100 anos pra ter conta!");
+                }
+                else 
+                { 
                     Idade = idade;
                 }
-                      
             } while (Idade < 18 || Idade > 100);
 
 
