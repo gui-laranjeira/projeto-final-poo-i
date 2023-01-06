@@ -57,6 +57,45 @@ namespace conta_bancaria.Models
             base.Depositar(valor);
         }
 
+          public void OperacoesPoupanca(int inputUsuario)
+        {
+            switch (inputUsuario)
+            {
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("Digite o valor que deseja transferir para poupança:");
+                    double valorTransf = double.Parse(Console.ReadLine());
+                    if (valorTransf < 0)
+                        valorTransf *= -1;
+                    TransferirParaPoupanca(valorTransf);
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("Digite o valor que deseja sacar: ");
+                    double valorSaq = double.Parse(Console.ReadLine());
+                    if (valorSaq < 0)
+                        valorSaq *= -1;
+                    Sacar(valorSaq, taxaDeSaque);
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 3:
+                    Console.Clear();
+                    Extrato();
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 4:
+                    Console.Clear();
+                    Cliente.VisualizarDados();
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+            }
+
+        }
 
 
     }

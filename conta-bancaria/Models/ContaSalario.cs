@@ -36,5 +36,41 @@ namespace conta_bancaria.Models
                 Console.WriteLine("CNPJ inserido não corresponde ao cnpj da empresa cadastrada");
             }                   
         }
+
+         public void OperacoesSalario(int inputUsuario)
+        {
+            switch (inputUsuario)
+            {
+                case 1:
+                    Console.Clear();
+                    Depositar(CnpjEmpresa);
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("\nInsira o valor que quer sacar:");
+                    double.TryParse(Console.ReadLine(), out double valorSaque);
+                    if (valorSaque < 0)
+                        valorSaque *= -1;
+                    Sacar(valorSaque, taxaDeSaque);
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 3:
+                    Console.Clear();
+                    Extrato();
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+                case 4:
+                    Console.Clear();
+                    Console.WriteLine();
+                    Cliente.VisualizarDados();
+                    Console.WriteLine("\nPressione ENTER para continuar!");
+                    Console.ReadKey();
+                    break;
+            }
+        }
     }
 }
