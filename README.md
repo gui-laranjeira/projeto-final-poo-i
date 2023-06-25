@@ -1,4 +1,4 @@
-# Projeto Final Ada POO I - Conta Bancária 
+# Projeto Final Ada POO I - Sistema Bancário 
 
 ## Exercício:
 
